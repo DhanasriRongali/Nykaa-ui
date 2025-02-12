@@ -1,0 +1,96 @@
+<header class="header">
+    <!-- Top Offer Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <b>Flat 25% off on first order | Use code: NEW25</b>
+            <nav class="offers-nav">
+                <a href="#" class="offers-nav-element">
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 512 512">
+                            <path fill="currentColor"
+                                d="M380 16H132a32.036 32.036 0 0 0-32 32v416a32.036 32.036 0 0 0 32 32h248a32.036 32.036 0 0 0 32-32V48a32.036 32.036 0 0 0-32-32m0 32v32H132V48Zm0 64l.011 224H132V112Zm0 352H132v-96h248.016v96Z" />
+                            <path fill="currentColor" d="M240 400h32v32h-32z" />
+                        </svg>
+                    </span>
+                    Get App
+                </a>
+                <span class="separator">|</span>
+                <a href="#" class="offers-nav-element">
+                    <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M12 3a7 7 0 0 0-7 7c0 2.862 1.782 5.623 3.738 7.762A26 26 0 0 0 12 20.758q.262-.201.615-.49a26 26 0 0 0 2.647-2.504C17.218 15.623 19 12.863 19 10a7 7 0 0 0-7-7m0 20.214l-.567-.39l-.003-.002l-.006-.005l-.02-.014l-.075-.053l-.27-.197a28 28 0 0 1-3.797-3.44C5.218 16.875 3 13.636 3 9.999a9 9 0 0 1 18 0c0 3.637-2.218 6.877-4.262 9.112a28 28 0 0 1-3.796 3.44a17 17 0 0 1-.345.251l-.021.014l-.006.005l-.002.001zM12 8a2 2 0 1 0 0 4a2 2 0 0 0 0-4m-4 2a4 4 0 1 1 8 0a4 4 0 0 1-8 0" />
+                        </svg></span>
+                    Shop & Events
+                </a>
+                <span class="separator">|</span>
+                <a href="#" class="offers-nav-element">
+                    <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16">
+                            <path fill="currentColor"
+                                d="M1 5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2zm12 7a1 1 0 0 0 1-1V8H6.707l1.147 1.146a.5.5 0 1 1-.708.708L6 8.707V12zM7.915 7H14V5a1 1 0 0 0-1-1H6v1.085q.236-.084.5-.085a1.5 1.5 0 0 1 1.415 2M6.5 7a.5.5 0 1 0-.5-.5V7zM5 5.085V4H3a1 1 0 0 0-1 1v2h1.085A1.5 1.5 0 0 1 5 5.085M4.5 7H5v-.5a.5.5 0 1 0-.5.5m-.207 1H2v3a1 1 0 0 0 1 1h2V8.707L3.854 9.854a.5.5 0 0 1-.708-.708z" />
+                        </svg></span>
+                    Gift Card
+                </a>
+                <span class="separator">|</span>
+                <a href="#" class="offers-nav-element">
+                    <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
+                            <path fill="currentColor"
+                                d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2m0 26a12 12 0 1 1 12-12a12 12 0 0 1-12 12" />
+                            <circle cx="16" cy="23.5" r="1.5" fill="currentColor" />
+                            <path fill="currentColor"
+                                d="M17 8h-1.5a4.49 4.49 0 0 0-4.5 4.5v.5h2v-.5a2.5 2.5 0 0 1 2.5-2.5H17a2.5 2.5 0 0 1 0 5h-2v4.5h2V17a4.5 4.5 0 0 0 0-9" />
+                        </svg></span>
+                    Help
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <div class="main-header">
+        <div class="container header-content">
+            <!-- Logo -->
+            <div class="logo">
+                <h1>NYKAA</h1>
+            </div>
+
+            <!-- Main Header Navigation -->
+            <div class="main-header-nav">
+                <ul class="main-header-nav-list">
+                    <li *ngFor="let item of mainNavItems">
+                        <a [href]="item['nav-link']">{{ item['nav-name'] }}</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <div class="search-container">
+                    <div class="search-box">
+                        <button class="search-btn">🔍</button>
+                        <input type="text" placeholder="Search on Nykaa" class="search-input">
+                    </div>
+                </div>
+                <button class="account-btn">
+                    <span class="icon">👤</span>
+                    <span class="text">Account</span>
+                </button>
+                <button class="cart-btn">
+                    <span class="icon">🛒</span>
+                    <span class="cart-count">0</span>
+                    <span class="text">Cart</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Navigation -->
+    <nav class="category-nav">
+        <div class="category-container">
+            <ul>
+                <li *ngFor="let category of categoryItems">
+                    <a [href]="category['nav-link']">{{ category['nav-name'] }}</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
