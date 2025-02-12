@@ -1,0 +1,225 @@
+.subscribe-section {
+    background: rgb(58, 64, 71);
+    padding: 2rem 0;
+  }
+  
+  .subscribe-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .subscribe-box, .app-box, .contact-box {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .subscribe-box h3, .app-box h3, .contact-box h3 {
+    margin: 0 0 1rem;
+    color: white;
+  }
+  
+  .input-group input {
+    min-width: 200px;
+  }
+  
+  .app-box {
+    text-align: center;
+  }
+  
+  .app-box svg {
+    vertical-align: middle;
+    margin-right: 0.5rem;
+  }
+  
+  .app-box p, .app-box .store-button {
+    margin: 0 0 1rem;
+    color: white;
+  }
+  
+  .contact-box {
+    text-align: right;
+  }
+  
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contact-item img {
+    filter: invert(1);
+  }
+  
+  .contact-item span {
+    color: white;
+    margin-left: 0.5rem;
+  }
+
+
+  .info-section {
+    background: rgb(140, 141, 148);
+    padding: 4rem 0;
+  }
+  
+  .info-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .footer-links:hover {
+    color: var(--primary-pink);
+  }
+  
+  .nykaa-logo {
+    height: 40px;
+    margin-bottom: 1rem;
+  }
+  
+  .footer-links {
+    color: white;
+  }
+  
+  .footer-links li a {
+    color: white;
+  }
+  
+  h4 {
+    margin: 0 0 1rem;
+    color: white;
+  }
+
+
+  .trust-benefits {
+    background: white;
+    padding: 2rem 0;
+    border-top: 1px solid #eee;
+  }
+  
+  .trust-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .benefit-items {
+     display: flex;
+    font-size: small;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: nowrap;
+}
+  
+  
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .benefit-icon {
+    background: var(--light-pink);
+    padding: 1rem;
+    border-radius: 50%;
+  }
+  
+  .benefit-item h3 {
+    margin: 0;
+    font-size: 0.8rem;
+  }
+  
+  .benefit-item p {
+    margin: 0.25rem 0 0;
+    color: #666;
+  }
+  
+  .social-media {
+    text-align: right;
+  }
+  
+  .social-media p {
+    margin: 0 0 0.5rem;
+    font-weight: 500;
+  }
+  
+  .social-icons {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+  }
+  
+  .social-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+
+  .terms-section {
+    background: var(--primary-pink);
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  .terms-content {
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .policy-links {
+    margin-bottom: 1.5rem;
+  }
+  
+  .policy-link {
+    margin: 0 1rem;
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .policy-link:hover {
+    text-decoration: underline;
+  }
+  
+  .terms-content p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  .popular-links-section {
+    /* background: var(--light-pink); */
+    padding: 2rem 0;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .popular-links-title {
+    color: #464545;
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .popular-links {
+    color: #585858;
+    margin: 0;
+  }
+  
+
+  .popular-link {
+
+    text-decoration: none;
+    color: inherit;
+  }
+
