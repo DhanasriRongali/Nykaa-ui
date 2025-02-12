@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+/* Nykaa Theme Colors and Global Styles */
+:root {
+  --nykaa-pink: #fc2779;
+  --nykaa-black: #1a1a1a;
+  --nykaa-gray: #3f414d;
+  --nykaa-light-gray: #8c8d94;
+  --nykaa-white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--nykaa-white);
+  color: var(--nykaa-black);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.btn-primary {
+  background-color: var(--nykaa-pink);
+  color: var(--nykaa-white);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #e6246d;
+}
+
+/* Add application styles & imports to this file! */
+
+:root {
+  --primary-pink: #e93f94;
+  --light-pink: #fff0f6;
+  --dark-gray: #333333;
+  --medium-gray: #666666;
+  --light-gray: #f5f5f5;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--dark-gray);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--primary-pink);
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-group input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  flex: 1;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--medium-gray);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--primary-pink);
+}
+
+.social-icon {
+  width: 24px;
+  height: 24px;
+  margin: 0 8px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.social-icon:hover {
+  opacity: 0.8;
+}
+
+.store-button {
+  height: 40px;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.store-button:hover {
+  opacity: 0.8;
+}
+
+.contact-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 0.5rem;
+}
+
+.policy-link {
+  color: var(--dark-gray);
+  text-decoration: none;
+  margin: 0 1rem;
+  font-size: 0.9rem;
+}
+
+.policy-link:hover {
+  text-decoration: underline;
+}
+
+.popular-links {
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
