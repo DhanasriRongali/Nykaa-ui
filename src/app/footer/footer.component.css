@@ -13,6 +13,7 @@
   
   .subscribe-box, .app-box, .contact-box {
     flex: 1;
+    font-size: medium;
     min-width: 300px;
   }
   
@@ -223,3 +224,14 @@
     color: inherit;
   }
 
+  @media (min-width: 1200px) {
+    .h3, h3 {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1200px) {
+  .h4, h4 {
+      font-size: 1rem;
+  }
+}
