@@ -1,0 +1,92 @@
+.hard-to-resist-deals-section {
+  padding: 2rem 0;
+  background-color: #fff2fb;
+}
+
+.heading-card {
+  /* margin-bottom: 1rem; */
+  text-align: center;
+}
+
+.heading-card img {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  max-width: 1250px;
+  margin: 0 auto;
+  justify-content: center; /* Center the cards */
+}
+
+.card {
+  background: rgb(255, 242, 251);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s;
+  flex: 1 1 calc(20% - 10px); /* Ensure 5 cards per line */
+  max-width: calc(20% - 10px); /* Ensure 5 cards per line */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: auto; /* Ensure full image is visible */
+  object-fit: contain; /* Ensure full image is visible */
+  display: block;
+}
+
+.card a {
+  text-decoration: none; /* Ensure no underline for links */
+}
+
+.caption {
+  padding: 5px;
+  margin: 0;
+  text-align: center;
+  font-size: 18px;
+  color: #000000;
+  text-decoration: none; /* Added text decoration */
+  font-weight: bold; /* Make text bold */
+}
+
+.offer-text {
+  padding: 1px;
+  margin: 0;
+  text-align: center;
+  font-size: 15px;
+  color: #2c2c2c;
+  text-decoration: none; /* Added text decoration */
+  font-weight: bold;
+}
+
+@media (max-width: 1200px) {
+  .card {
+    flex: 1 1 calc(25% - 10px); /* Ensure 4 cards per line */
+    max-width: calc(25% - 10px); /* Ensure 4 cards per line */
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex: 1 1 calc(50% - 10px); /* Ensure 2 cards per line */
+    max-width: calc(50% - 10px); /* Ensure 2 cards per line */
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex: 1 1 100%; /* Ensure 1 card per line */
+    max-width: 100%; /* Ensure 1 card per line */
+  }
+}
