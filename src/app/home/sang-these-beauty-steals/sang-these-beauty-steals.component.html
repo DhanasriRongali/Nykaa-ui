@@ -1,0 +1,9 @@
+<div class="beauty-steals-container">
+    <img *ngIf="titleImage" [src]="titleImage" alt="Title Image" class="title-image">
+
+    <div class="images-grid">
+        <div *ngFor="let image of displayImages" class="image-item">
+            <img [src]="image" alt="Beauty Steal Image">
+        </div>
+    </div>
+</div>

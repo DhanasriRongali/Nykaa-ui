@@ -1,0 +1,32 @@
+.beauty-steals-container {
+    text-align: center;
+    background-color: rgb(255, 242, 251);
+    padding: 40px;
+}
+
+.title-image {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+}
+
+.images-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.image-item {
+    flex: 1 1 calc(16.66% - 10px);
+    max-width: calc(16.66% - 10px);
+}
+
+.image-item img {
+    width: 100%;
+    height: auto;
+}
+
+.centered {
+    justify-content: center;
+}
