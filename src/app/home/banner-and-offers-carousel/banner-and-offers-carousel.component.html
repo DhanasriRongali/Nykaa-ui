@@ -1,0 +1,27 @@
+<div class="main-banner">
+    <img [src]="bannerUrl" class="banner-image" alt="Banner Image" />
+</div>
+
+<div #offersCarousel id="offersCarousel" class="carousel slide">
+    <div class="carousel-inner">
+        <div *ngFor="let offer of offersUrls; let i = index" [ngClass]="{'carousel-item': true, 'active': i === 0}">
+            <img title="offer" [src]="offer" class="bank-offers-image d-block w-100" [alt]="'Offers Image ' + (i + 1)">
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#offersCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#offersCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+
+    <div class="carousel-indicators">
+        <button *ngFor="let offer of offersUrls; let i = index" type="button" data-bs-target="#offersCarousel"
+            [attr.data-bs-slide-to]="i" [class.active]="i === 0" [attr.aria-current]="i === 0 ? 'true' : null"
+            title="'Slide ' + (i + 1)">
+        </button>
+    </div>
+</div>

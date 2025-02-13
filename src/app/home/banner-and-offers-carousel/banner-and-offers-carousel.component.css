@@ -1,0 +1,15 @@
+.banner-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.carousel {
+    /* max-width: 1200px; */
+    width: 100%;
+    /* margin: 10px 50px 10px 50px; */
+}
+
+.bank-offers-image {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

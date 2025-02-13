@@ -1,0 +1,61 @@
+.carousel-inner {
+    padding: 20px;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    margin: 20px auto;
+    max-width: 1200px;
+    /* adjust as needed */
+    overflow: hidden;
+}
+
+.carousel-window {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    /* for smooth sliding if you implement next/prev */
+}
+
+.carousel-item {
+    flex: 0 0 calc(100% / 6);
+    /* 6 items per row */
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.carousel-item img {
+    width: 100%;
+    display: block;
+    border-radius: 4px;
+}
+
+.nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 50%;
+}
+
+.nav.prev {
+    left: 10px;
+}
+
+.nav.next {
+    right: 10px;
+}
+
+.nav:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
