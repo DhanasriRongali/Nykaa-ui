@@ -1,0 +1,9 @@
+<div class="offers-container">
+    <img [src]="titleImage" alt="Cupid-Approved Offers" class="title-image">
+    <div class="offers-grid">
+        <div class="offer-card" *ngFor="let offer of offers">
+            <img [src]="offer.displayImage" [alt]="offer.offerText">
+            <p class="offer-text">{{ offer.offerText }}</p>
+        </div>
+    </div>
+</div>
