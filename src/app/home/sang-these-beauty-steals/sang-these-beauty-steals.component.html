@@ -1,0 +1,13 @@
+<div class="beauty-steals-container">
+    <!-- Title Image -->
+    <img *ngIf="titleImage" [src]="titleImage.titleImage" alt="Title Image" class="title-image">
+
+    <!-- Grid of Offer Images -->
+    <div class="images-grid">
+        <div *ngFor="let image of displayImages" class="image-item">
+            <img [src]="image.displayImage" alt="Beauty Steal Image" class="offer-image">
+            <div class="offer-text">{{ image.offerText }}</div>
+            <div class="offer-description">{{ image.offerDescription }}</div>
+        </div>
+    </div>
+</div>

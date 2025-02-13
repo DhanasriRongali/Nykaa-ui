@@ -1,0 +1,12 @@
+<div class="beauty-container">
+    <!-- Title Image -->
+    <img *ngIf="beautyToFallFor?.images?.length" [src]="beautyToFallFor.images[0].titleImage" alt="Beauty To Fall For"
+        class="title-image" />
+
+    <!-- Image Grid -->
+    <div class="image-grid">
+        <div class="image-card" *ngFor="let image of beautyToFallFor.images.slice(1)">
+            <img [src]="image.displayImage" alt="Category Image" class="category-image" />
+        </div>
+    </div>
+</div>

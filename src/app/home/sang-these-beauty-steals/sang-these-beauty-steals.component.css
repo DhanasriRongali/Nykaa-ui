@@ -1,0 +1,76 @@
+.beauty-steals-container {
+    text-align: center;
+    background-color: rgb(255, 242, 251);
+    padding: 40px;
+}
+
+.title-image {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+}
+
+.images-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.image-item {
+    flex: 1 1 calc(16.66% - 10px);
+    max-width: calc(16.66% - 10px);
+}
+
+.image-item img {
+    width: 100%;
+    height: auto;
+}
+
+.centered {
+    justify-content: center;
+}
+
+.beauty-steals-container {
+    text-align: center;
+    /* background-color: #ffe0eb; */
+    /* Light pink background */
+    padding: 20px;
+}
+
+.title-image {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+}
+
+.images-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.image-item {
+    text-align: center;
+    /* background: white; */
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.offer-image {
+    width: 100%;
+    /* border-radius: 10px; */
+}
+
+.offer-text {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.offer-description {
+    font-size: 12px;
+    color: #555;
+}
