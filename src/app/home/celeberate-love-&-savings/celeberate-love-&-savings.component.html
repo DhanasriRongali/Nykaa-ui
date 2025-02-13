@@ -1,0 +1,22 @@
+<div class="carousel-container">
+  <div class="heading-card" *ngIf="titleImage">
+    <a [href]="titleImage.navLink">
+      <img [src]="titleImage.imageUrl" [alt]="titleImage.offerText1">
+    </a>
+  </div>
+  <button class="nav-button prev" *ngIf="showPrevButton" (click)="previous()">&lt;</button>
+  
+  <div class="carousel-wrapper" #carouselWrapper>
+    <div class="carousel-content" [style.transform]="'translateX(' + translateX + 'px)'">
+      <div class="carousel-card" *ngFor="let card of cards">
+        <a [href]="card.navLink">
+          <img [src]="card.imageUrl" [alt]="card.offerText1">
+          <p class="offer-text1">{{ card.offerText1 }}</p>
+          <p class="offer-text2">{{ card.offerText2 }}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <button class="nav-button next" *ngIf="showNextButton" (click)="next()">&gt;</button>
+</div>

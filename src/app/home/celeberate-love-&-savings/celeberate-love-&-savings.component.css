@@ -1,0 +1,132 @@
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1250px;
+  margin: 40px auto;
+  padding: 0 40px;
+}
+
+.heading-card {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.heading-card img {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  border-radius: 8px;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-content {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-card {
+  flex: 0 0 calc(33.333% - 20px); /* Ensure 3 cards per line */
+  margin: 0 10px;
+  background: white;
+  border-color: transparent;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.carousel-card a {
+  text-decoration: none; /* Ensure no underline for links */
+}
+
+.carousel-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.offer-text1 {
+  margin: 0;
+  text-align: center;
+  font-size: 20px;
+  color: #020202;
+  text-decoration: none; /* Ensure no underline */
+  font-weight: bold; /* Make text bold */
+}
+
+.offer-text2 {
+  margin: 0;
+  text-align: center;
+  font-size: 17px;
+  color: #252525;
+  font-weight: bold;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  /* border-color: #666; */
+  width: 60px;
+  height: 60px;
+  font-size: 25px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background-color 0.3s;
+}
+
+.nav-button:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ccc;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.dot.active {
+  background: #666;
+}
+
+@media (max-width: 1024px) {
+  .carousel-card {
+    flex: 0 0 calc(33.333% - 20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-card {
+    flex: 0 0 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-card {
+    flex: 0 0 calc(100% - 20px);
+  }
+}
