@@ -1,0 +1,56 @@
+.flash-sales {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0 20px 0;
+}
+
+.banner-section {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.timer {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 4px;
+    z-index: 1;
+}
+
+.banner-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.flash-items {
+    display: flex;
+    align-items: center;
+    margin: 0px 20px 0px 20px;
+}
+
+.flash-item {
+    /* flex: 1; */
+    margin: 0 10px;
+    text-align: center;
+}
+
+.flash-item-image {
+    max-width: 385px;
+    display: inline-block;
+    width: 100%;
+    vertical-align: bottom;
+    min-height: 50px;
+    border-radius: 10px;
+}
+
+/* Optional: Style for navigation buttons when needed */
+.nav-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}

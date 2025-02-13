@@ -1,0 +1,18 @@
+<div class="flash-sales">
+    <!-- Banner Section -->
+    <div class="banner-section">
+        <img [src]="banner?.bannerImage" alt="Flash Sale Banner" class="banner-image" />
+    </div>
+
+    <div class="flash-items">
+        <!-- Uncomment the buttons when navigation is needed in the future -->
+        <!-- <button class="nav-btn prev-btn">Previous</button> -->
+
+        <div *ngFor="let item of flashItems" class="flash-item">
+            <img [src]="item.gif" alt="Flash Sale Item" class="flash-item-image" />
+            <div *ngIf="item.gifText" class="gif-text">{{ item.gifText }}</div>
+        </div>
+
+        <!-- <button class="nav-btn next-btn">Next</button> -->
+    </div>
+</div>
