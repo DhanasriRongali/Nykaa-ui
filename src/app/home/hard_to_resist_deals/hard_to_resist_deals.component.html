@@ -1,0 +1,16 @@
+<section class="hard-to-resist-deals-section">
+  <div class="heading-card">
+    <a [href]="cards[0].navLink">
+      <img [src]="cards[0].imageUrl" [alt]="cards[0].caption">
+    </a>
+  </div>
+  <div class="cards-container">
+    <div class="card" *ngFor="let card of cards.slice(1)">
+      <a [href]="card.navLink">
+        <img [src]="card.imageUrl" [alt]="card.caption">
+        <p class="caption">{{ card.caption }}</p>
+        <p class="offer-text">{{ card.offerText }}</p>
+      </a>
+    </div>
+  </div>
+</section>
