@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HardToResistDealsService } from '../../../services/hard_to_resist_deals.service';
+import { HardToResistDealsService } from '../../../services/hard-to-resist-deals.service';
 
 @Component({
   selector: 'app-offer-cards',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './hard_to_resist_deals.component.html',
-  styleUrls: ['./hard_to_resist_deals.component.css'],
+  templateUrl: './hard-to-resist-deals.component.html',
+  styleUrls: ['./hard-to-resist-deals.component.css'],
   providers: [HardToResistDealsService]
 })
 export class OfferCardsComponent implements OnInit {
