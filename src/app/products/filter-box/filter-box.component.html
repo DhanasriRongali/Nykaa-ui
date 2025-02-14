@@ -1,0 +1,30 @@
+<div class="filter-container">
+    <div class="filter-group">
+      <!-- Sort Dropdown -->
+      <div class="filter-header">
+        <select class="filter-dropdown">
+          <option>Sort By: Popularity</option>
+          <option>Price: Low to High</option>
+          <option>Price: High to Low</option>
+          <option>Newest First</option>
+        </select>
+      </div>
+  
+      <!-- Filter Sections -->
+      <div *ngFor="let filter of filters" class="filter-section">
+        <button (click)="filter.isOpen = !filter.isOpen" class="filter-toggle">
+          <span>{{ filter.name }}</span>
+          <span class="icon" [class.icon-rotate]="filter.isOpen">▼</span>
+        </button>
+  
+        <!-- Filter Options -->
+        <div *ngIf="filter.isOpen" class="filter-options">
+          <div *ngFor="let option of filter.options" class="filter-option">
+            <input type="checkbox" [id]="option" class="checkbox">
+            <label [for]="option" class="filter-label">{{ option }}</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

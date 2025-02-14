@@ -10,12 +10,13 @@ import { FlashSalesComponent } from './app/home/flash-sales/flash-sales.componen
 import { SangTheseBeautyStealsComponent } from './app/home/sang-these-beauty-steals/sang-these-beauty-steals.component';
 import { BeautyToFallForComponent } from './app/home/beauty-to-fall-for/beauty-to-fall-for.component';
 import { CupidApprovedOffersComponent } from './app/home/cupid-approved-offers/cupid-approved-offers.component';
+import { ImageGridComponent } from './app/home/global-brands-to-love/global-brands-to-love.component';
 import { InfluencerStoresComponent } from './app/home/influencer-stores/influencer-stores.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent, CelebrateLoveCarouselCardsComponent, BannerAndOffersCarouselComponent, GiftStoreComponent, FlashSalesComponent, OfferCardsComponent, SangTheseBeautyStealsComponent, BeautyToFallForComponent, CupidApprovedOffersComponent, InfluencerStoresComponent],
+  imports: [HeaderComponent, FooterComponent, CelebrateLoveCarouselCardsComponent, BannerAndOffersCarouselComponent, GiftStoreComponent, FlashSalesComponent, OfferCardsComponent, SangTheseBeautyStealsComponent, BeautyToFallForComponent, CupidApprovedOffersComponent, InfluencerStoresComponent, ImageGridComponent],
   template: `
     <app-header></app-header>
     <app-banner-and-offers-carousel></app-banner-and-offers-carousel>
@@ -26,6 +27,7 @@ import { InfluencerStoresComponent } from './app/home/influencer-stores/influenc
     <app-sang-these-beauty-steals></app-sang-these-beauty-steals>
     <app-beauty-to-fall-for></app-beauty-to-fall-for>
     <app-cupid-approved-offers></app-cupid-approved-offers>
+    <app-image-grid></app-image-grid>
     <app-influencer-stores></app-influencer-stores>
     <app-footer></app-footer>
   `
