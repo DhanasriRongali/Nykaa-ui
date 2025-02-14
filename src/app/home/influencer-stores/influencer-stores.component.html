@@ -1,0 +1,8 @@
+<div class="influencer-stores-container">
+    <div class="influencer-grid">
+      <div class="influencer-card" *ngFor="let influencer of influencers">
+        <img [src]="influencer.imageUrl" [alt]="influencer.name" class="influencer-image">
+        <div class="collection-info">{{ influencer.catchyText }}</div>
+      </div>
+    </div>
+  </div>
