@@ -1,0 +1,80 @@
+/* Filter Container */
+.filter-container {
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  /* Sort Dropdown */
+  .filter-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+  }
+  
+  .filter-dropdown {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  /* Filter Sections */
+  .filter-section {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  /* Filter Toggle Button */
+  .filter-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem;
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  
+  .icon {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .icon-rotate {
+    transform: rotate(180deg);
+  }
+  
+  /* Filter Options */
+  .filter-options {
+    margin-top: 0.5rem;
+  }
+  
+  .filter-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+  }
+  
+  /* Checkboxes */
+  .checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  
+  /* Labels */
+  .filter-label {
+    font-size: 0.9rem;
+    color: #333;
+    cursor: pointer;
+  }
+  
