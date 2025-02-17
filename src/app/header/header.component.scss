@@ -156,6 +156,7 @@
   border: 1px solid #ddd;
   margin-top: 114px;
   width: 100%;
+  position: relative;
 }
 
 .category-nav ul {
@@ -213,4 +214,20 @@
 
 .main-header-nav-list a:hover::after {
   width: 100%;
+}
+
+.category-menu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.category-container {
+  &:hover + .category-menu-dropdown {
+    display: block;
+  }
 }

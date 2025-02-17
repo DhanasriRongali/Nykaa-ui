@@ -88,9 +88,17 @@
         <div class="category-container">
             <ul>
                 <li *ngFor="let category of categoryItems">
-                    <a [href]="category['nav-link']">{{ category['nav-name'] }}</a>
+                    <a [href]="category['nav-link']" (mouseenter)="showCategoryMenu = true" 
+                    (mouseleave)="showCategoryMenu = false">{{ category['nav-name'] }}</a>
                 </li>
             </ul>
         </div>
+        
+        <!-- Category Menu Component -->
+        <app-category-menu 
+            *ngIf="showCategoryMenu" 
+            class="category-menu-dropdown"
+            [style.display]="showCategoryMenu ? 'block' : 'none'">
+        </app-category-menu>
     </nav>
 </header>
