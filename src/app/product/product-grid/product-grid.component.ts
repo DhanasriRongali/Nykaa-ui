@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../services/products.service';
 import { Product } from '../../../types/product.types';
@@ -12,13 +12,16 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   styleUrls: ['./product-grid.component.css'],
 })
 export class ProductGridComponent implements OnInit {
-  products: Product[] = [];
+  @Input() products: Product[] = [];
 
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.productService.getProducts().subscribe((data) => {
-      this.products = data.products;
-    });
+    // Only fetch products if none were passed in
+    if (this.products.length === 0) {
+      this.productService.getProducts().subscribe((data) => {
+        this.products = data.products;
+      });
+    }
   }
 }

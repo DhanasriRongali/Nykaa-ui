@@ -13,6 +13,8 @@
   position: relative;
   transition: none;
   /* Remove hover effect */
+  padding: 15px;  /* Add consistent padding */
+  box-sizing: border-box;
 }
 
 /* Remove hover scaling */
@@ -23,7 +25,7 @@
 /* Badge - always visible, positioned above the image */
 .badge {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 10px;
   background: #e40046;
   color: white;
@@ -34,11 +36,11 @@
   z-index: 2;
 }
 
-/* Image Container */
+/* Image Container - Fixed height and positioning */
 .image-container {
-  /* width: 100%; */
-  /* height: 220px; */
-  top: 30px;
+  width: 100%;
+  height: 250px;  /* Fixed height for all images */
+  margin-bottom: 15px;  /* Consistent spacing */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,33 +50,42 @@
 }
 
 .image-container img {
-  width: 100%;
-  height: auto;
-  max-height: 220px;
+  width: auto;  /* Changed from 100% */
+  height: 100%;  /* Take full container height */
+  object-fit: contain;  /* Maintain aspect ratio */
 }
 
-/* Product Details */
+/* Product Details - Fixed heights and spacing */
 .product-details {
-  margin-top: 30px;
-  flex-grow: 1;
-  padding: 10px;
+  height: 150px;  /* Fixed height for details section */
+  margin-top: 0;  /* Remove variable margin */
+  padding: 0;  /* Remove padding, we'll space children instead */
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;  /* Align items from top */
   align-items: center;
-  justify-content: space-between;
+  gap: 10px;  /* Consistent spacing between elements */
 }
 
 .product-name {
   font-size: 14px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin: 0;  /* Remove margin */
+  height: 40px;  /* Fixed height for 2 lines of text */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;  /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 
-/* Ratings */
-.ratings {
-  font-size: 12px;
-  color: #555;
-  margin-bottom: 5px;
+/* Price and Ratings Container */
+.price-ratings-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
 }
 
 /* Price */
@@ -82,6 +93,10 @@
   font-size: 16px;
   font-weight: bold;
   color: #e40046;
+  height: 20px;  /* Fixed height */
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .original-price {
@@ -91,11 +106,23 @@
   margin-left: 5px;
 }
 
+/* Ratings */
+.ratings {
+  font-size: 12px;
+  color: #555;
+  height: 15px;  /* Fixed height */
+  display: flex;
+  align-items: center;
+}
+
 /* Offer */
 .offer {
-  margin-top: 10px;
+  width: 100%;
+  height: 20px;  /* Fixed height */
+  margin: 0;  /* Remove margin */
   font-size: 12px;
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 5px;
 }
@@ -103,6 +130,7 @@
 .offer img {
   width: 20px;
   height: 20px;
+  object-fit: contain;
 }
 
 /* Hover Buttons - Initially Hidden Below the Card */
@@ -118,6 +146,7 @@
   align-items: center;
   transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
   opacity: 0;
+  height: 50px;  /* Fixed height */
 }
 
 /* Show Buttons on Hover */

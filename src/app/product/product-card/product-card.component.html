@@ -11,7 +11,7 @@
   <div class="product-details">
     <h3 class="product-name">{{ product.name }}</h3>
 
-    <div>
+    <div class="price-ratings-container">
       <!-- Price -->
       <div class="price">
         <span class="discounted-price">${{ product.price.toFixed(2) }}</span>
@@ -21,19 +21,21 @@
       </div>
 
       <!-- Ratings -->
-      <div class="ratings">
-        ⭐ {{ product.ratings.average_rating }} ({{ product.ratings.review_count }} Reviews)
+      <div class="ratings" *ngIf="product.ratings">
+        ⭐ {{ product?.ratings.average_rating }} ({{ product?.ratings.review_count }} Reviews)
       </div>
     </div>
 
     <!-- Offer -->
     <div *ngIf="product.custom_props?.offer" class="offer">
-      <img [src]="product.custom_props.offer.offer_image" [alt]="product.custom_props.offer.offer_name">
-      <span>{{ product.custom_props.offer.offer_name }}</span>
+      <img *ngIf="product?.custom_props.offer.offer_image" 
+           [src]="product?.custom_props.offer.offer_image" 
+           [alt]="product?.custom_props.offer.offer_name">
+      <span>{{ product?.custom_props.offer.offer_name }}</span>
     </div>
   </div>
 
-  <!-- Add to Bag & Wishlist (Visible on Hover) -->
+  <!-- Add to Bag & Wishlist -->
   <div class="hover-buttons" [ngClass]="{ 'show': isHovered }">
     <button class="wishlist-btn">♡</button>
     <button class="add-to-bag-btn">Add to Bag</button>

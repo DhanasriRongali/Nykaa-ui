@@ -1,6 +1,8 @@
-import { Product } from '../types/product.types';
-import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { Product } from '../types/product.types';
 
 const dummyMakeupProducts: Product[] = [
   {
@@ -105,9 +107,25 @@ const dummyMakeupProducts: Product[] = [
   }
 ];
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class ProductService {
+  private apiUrl = 'http://192.168.1.140:3000/api/products';
+
+  constructor(private http: HttpClient) {}
+
   getProducts(): Observable<{ products: Product[]; total: number }> {
     return of({ products: dummyMakeupProducts, total: dummyMakeupProducts.length });
+  }
+
+  getProductsByBrand(brandId: string): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/by-brand?brand_id=${brandId}`).pipe(
+      map(response => response),
+      catchError(error => {
+        console.error('Error fetching products by brand:', error);
+        return of([]);
+      })
+    );
   }
 }
