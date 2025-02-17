@@ -1,0 +1,12 @@
+<div class="category-menu">
+    <ul>
+      <li *ngFor="let category of categories">
+        {{ category.name }}
+        <ul *ngIf="category.subcategories">
+          <li *ngFor="let sub of category.subcategories">
+            {{ sub.name }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
