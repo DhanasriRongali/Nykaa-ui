@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HardToResistDealsService } from '../../../services/hard-to-resist-deals.service';
+import { ProductService } from '../../../services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-offer-cards',
@@ -11,9 +13,19 @@ import { HardToResistDealsService } from '../../../services/hard-to-resist-deals
   providers: [HardToResistDealsService]
 })
 export class OfferCardsComponent implements OnInit {
-  cards: { navLink: string, imageUrl: string, caption: string, offerText: string }[] = [];
-
-  constructor(private dealsService: HardToResistDealsService) {}
+  cards: { 
+    navLink: string, 
+    imageUrl: string, 
+    caption: string, 
+    offerText: string,
+    brandId: string 
+  }[] = [];
+  
+  constructor(
+    private dealsService: HardToResistDealsService,
+    private productsService: ProductService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     const allCards = this.dealsService.getCards();
@@ -28,5 +40,15 @@ export class OfferCardsComponent implements OnInit {
       [array[i], array[j]] = [array[j], array[i]];
     }
     return array;
+  }
+
+  getProductsByBrand(brandId: string) {
+    this.productsService.getProductsByBrand(brandId).subscribe((products) => {
+      console.log(products);
+    });
+  }
+
+  onCardClick(brandId: string) {
+    this.router.navigate(['/products', brandId]);
   }
 }
