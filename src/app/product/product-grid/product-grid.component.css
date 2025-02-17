@@ -1,0 +1,11 @@
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.product-card {
+    flex: 0 0 calc(33.33% - 20px);
+    /* Ensures 3 per row */
+}

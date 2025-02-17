@@ -1,0 +1,168 @@
+.product-card {
+  width: 280px;
+  /* Fixed width for all cards */
+  height: 450px;
+  /* Fixed height */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  transition: none;
+  /* Remove hover effect */
+}
+
+/* Remove hover scaling */
+.product-card:hover {
+  transform: none;
+}
+
+/* Badge - always visible, positioned above the image */
+.badge {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  background: #e40046;
+  color: white;
+  padding: 5px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+/* Image Container */
+.image-container {
+  /* width: 100%; */
+  /* height: 220px; */
+  top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  max-height: 220px;
+}
+
+/* Product Details */
+.product-details {
+  margin-top: 30px;
+  flex-grow: 1;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Ratings */
+.ratings {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+/* Price */
+.price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #e40046;
+}
+
+.original-price {
+  font-size: 14px;
+  text-decoration: line-through;
+  color: #999;
+  margin-left: 5px;
+}
+
+/* Offer */
+.offer {
+  margin-top: 10px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.offer img {
+  width: 20px;
+  height: 20px;
+}
+
+/* Hover Buttons - Initially Hidden Below the Card */
+.hover-buttons {
+  background-color: white;
+  padding: 10px 0 5px 0;
+  position: absolute;
+  bottom: -60px;
+  /* Start off-screen */
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+/* Show Buttons on Hover */
+.product-card:hover .hover-buttons {
+  bottom: 10px;
+  /* Move up into view */
+  opacity: 1;
+}
+
+/* Wishlist Button */
+.wishlist-btn {
+  background: white;
+  border: 1px solid #e40046;
+  color: #e40046;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wishlist-btn:hover {
+  background: #e40046;
+  color: white;
+}
+
+/* Add to Bag Button */
+.add-to-bag-btn {
+  background: #e40046;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+/* Slight pop effect on hover */
+.add-to-bag-btn:hover {
+  background: #c2003d;
+  transform: scale(1.05);
+}

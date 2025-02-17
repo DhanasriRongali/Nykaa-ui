@@ -32,6 +32,6 @@ import { InfluencerStoresComponent } from './app/home/influencer-stores/influenc
     <app-footer></app-footer>
   `
 })
-export class App {}
+export class App { }
 
 bootstrapApplication(App);

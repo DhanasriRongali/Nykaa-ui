@@ -1,0 +1,41 @@
+<div class="product-card" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+  <!-- Always Visible Badge -->
+  <div *ngIf="product.badge" class="badge">{{ product.badge }}</div>
+
+  <!-- Product Image -->
+  <div class="image-container">
+    <img [src]="hoverImage" [alt]="product.name">
+  </div>
+
+  <!-- Product Details -->
+  <div class="product-details">
+    <h3 class="product-name">{{ product.name }}</h3>
+
+    <div>
+      <!-- Price -->
+      <div class="price">
+        <span class="discounted-price">${{ product.price.toFixed(2) }}</span>
+        <span *ngIf="product.price < product.original_price" class="original-price">
+          ${{ product.original_price.toFixed(2) }}
+        </span>
+      </div>
+
+      <!-- Ratings -->
+      <div class="ratings">
+        ⭐ {{ product.ratings.average_rating }} ({{ product.ratings.review_count }} Reviews)
+      </div>
+    </div>
+
+    <!-- Offer -->
+    <div *ngIf="product.custom_props?.offer" class="offer">
+      <img [src]="product.custom_props.offer.offer_image" [alt]="product.custom_props.offer.offer_name">
+      <span>{{ product.custom_props.offer.offer_name }}</span>
+    </div>
+  </div>
+
+  <!-- Add to Bag & Wishlist (Visible on Hover) -->
+  <div class="hover-buttons" [ngClass]="{ 'show': isHovered }">
+    <button class="wishlist-btn">♡</button>
+    <button class="add-to-bag-btn">Add to Bag</button>
+  </div>
+</div>

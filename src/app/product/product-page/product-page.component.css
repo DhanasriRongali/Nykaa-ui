@@ -1,0 +1,17 @@
+.product-page-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    /* Adjust the gap between filter box and product grid as needed */
+}
+
+.filter-box {
+    flex: 1;
+    max-width: 300px;
+    /* Adjust the width of the filter box as needed */
+}
+
+.product-grid {
+    flex: 3;
+    width: 100%;
+}
