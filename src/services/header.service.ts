@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { NavItems } from '../types/header.types';
 
 @Injectable({
     providedIn: 'root'
 })
 export class HeaderService {
-    constructor() { }
+    private apiUrl = 'http://192.168.1.140:3000/api';
+
+    constructor(private http: HttpClient) { }
 
     getMainNavItems(): NavItems[] {
         console.log('getMainNavItems function called...');
         return [
+            { "nav-name": "Categories", "nav-link": "#" },
             { "nav-name": "Brands", "nav-link": "#" },
             { "nav-name": "Luxe", "nav-link": "#" },
             { "nav-name": "Nykaa Fashion", "nav-link": "#" },
@@ -17,18 +22,8 @@ export class HeaderService {
         ];
     }
 
-    getCategoryItems(): NavItems[] {
+    getCategoryItems(): Observable<any[]> {
         console.log('getCategoryItems function called...');
-        return [
-            { "nav-name": "Makeup", "nav-link": "#" },
-            { "nav-name": "Skincare", "nav-link": "#" },
-            { "nav-name": "Hair", "nav-link": "#" },
-            { "nav-name": "Appliances", "nav-link": "#" },
-            { "nav-name": "Bath & Body", "nav-link": "#" },
-            { "nav-name": "Natural", "nav-link": "#" },
-            { "nav-name": "Mom & Baby", "nav-link": "#" },
-            { "nav-name": "Fragrance", "nav-link": "#" },
-            { "nav-name": "Men", "nav-link": "#" }
-        ];
+        return this.http.get<any[]>(`${this.apiUrl}/categories`);
     }
 }

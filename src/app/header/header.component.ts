@@ -4,11 +4,7 @@ import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { NavItems } from '../../types/header.types';
 import { CategoryMenuComponent } from '../nav/category/category.component';
-import { RouterModule } from '@angular/router';
-import { CartComponent } from '../cart/cart.component';
-import { LoginModalService } from '../../services/login-modal.service';
-import { LoginComponent } from '../auth/login/login.component';
-import { SignupComponent } from '../auth/signup/signup.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-header',
@@ -22,14 +18,15 @@ import { SignupComponent } from '../auth/signup/signup.component';
     SignupComponent
   ],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
   mainNavItems: NavItems[] = [];
-  categoryItems: NavItems[]  = [];
+  categoryItems: any[] = [];
   showCategoryMenu = false;
   showAccountMenu = false;
   cartItemCount = 0;
+  selectedCategoryId: string = '';
 
   constructor(
     private headerService: HeaderService,

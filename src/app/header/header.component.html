@@ -50,7 +50,8 @@
         <div class="container header-content">
             <!-- Logo -->
             <div class="logo">
-                <h1>NYKAA</h1>
+                <a href="#"><img class="logo-img" src="https://logos-world.net/wp-content/uploads/2023/08/Pink-Pnk-Logo.png" alt="logo"></a>
+                <!-- <h1>NYKAA</h1> -->
             </div>
 
             <!-- Main Header Navigation -->
@@ -87,21 +88,28 @@
 
     <!-- Category Navigation -->
     <nav class="category-nav">
-        <div class="category-container">
-            <ul>
-                <li *ngFor="let category of categoryItems">
-                    <a [href]="category['nav-link']" (mouseenter)="showCategoryMenu = true" 
-                    (mouseleave)="showCategoryMenu = false">{{ category['nav-name'] }}</a>
-                </li>
-            </ul>
+        <div class="category-nav-container">
+            <div class="category-container">
+                <ul>
+                    <li *ngFor="let category of categoryItems">
+                        <a [href]="'/api/categories/' + category.id" 
+                           (mouseenter)="onCategoryHover(category.id)">
+                            {{ category.name }}
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Category Menu Component -->
+                <app-category-menu 
+                    *ngIf="showCategoryMenu" 
+                    [categoryId]="selectedCategoryId"
+                    class="category-menu-dropdown"
+                    [style.display]="showCategoryMenu ? 'block' : 'none'"
+                    (mouseleave)="showCategoryMenu = false"
+                    (mouseenter)="showCategoryMenu = true">
+                </app-category-menu>
+            </div>
         </div>
-        
-        <!-- Category Menu Component -->
-        <app-category-menu 
-            *ngIf="showCategoryMenu" 
-            class="category-menu-dropdown"
-            [style.display]="showCategoryMenu ? 'block' : 'none'">
-        </app-category-menu>
     </nav>
 
     <app-cart></app-cart>
