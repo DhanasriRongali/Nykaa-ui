@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
   selector: 'app-header',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     CategoryMenuComponent,
     HttpClientModule
   ],

@@ -73,6 +73,11 @@
   margin: 0;
 }
 
+.logo-img {
+  max-width: 150px;
+  height: 50px;
+}
+
 /* Search Bar */
 .search-container {
   flex: 1;

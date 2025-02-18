@@ -14,6 +14,7 @@ export class HeaderService {
     getMainNavItems(): NavItems[] {
         console.log('getMainNavItems function called...');
         return [
+            { "nav-name": "Categories", "nav-link": "#" },
             { "nav-name": "Brands", "nav-link": "#" },
             { "nav-name": "Luxe", "nav-link": "#" },
             { "nav-name": "Nykaa Fashion", "nav-link": "#" },
