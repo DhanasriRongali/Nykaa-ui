@@ -1,12 +1,18 @@
 <div class="category-menu">
-    <ul>
-      <li *ngFor="let category of categories">
-        {{ category.name }}
-        <ul *ngIf="category.subcategories">
-          <li *ngFor="let sub of category.subcategories">
-            {{ sub.name }}
+  <div class="category-columns-container">
+    <div class="category-column" *ngFor="let column of [].constructor(columnCount); let i = index">
+      <div class="category-section">
+        <ul class="subcategory-list">
+          <li *ngFor="let subCategory of getCategoriesForColumn(i)" class="subcategory-item">
+            <a href="#" class="subcategory-link">{{ subCategory.name }}</a>
+            <ul class="child-subcategory-list" *ngIf="subCategory.child_sub_category">
+              <li *ngFor="let childCategory of subCategory.child_sub_category" class="subcategory-item">
+                <a href="#" class="subcategory-link">{{ childCategory.name }}</a>
+              </li>
+            </ul>
           </li>
         </ul>
-      </li>
-    </ul>
+      </div>
+    </div>
   </div>
+</div>

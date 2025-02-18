@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BannerAndOffersCarouselComponent } from './banner-and-offers-carousel/banner-and-offers-carousel.component';
 import { GiftStoreComponent } from './gift-store/gift-store.component';
 import { FlashSalesComponent } from './flash-sales/flash-sales.component';
@@ -14,6 +15,7 @@ import { InfluencerStoresComponent } from './influencer-stores/influencer-stores
   selector: 'app-home',
   standalone: true,
   imports: [
+    CommonModule,
     BannerAndOffersCarouselComponent,
     GiftStoreComponent,
     FlashSalesComponent,
