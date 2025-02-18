@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
   mainNavItems: NavItems[] = [];

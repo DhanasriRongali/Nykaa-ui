@@ -1,7 +1,6 @@
 /* Top Offer Bar */
 .top-bar {
   background-color: var(--nykaa-pink);
-  // background-image: url("D:/Angular/static/common-strip.jpg");
   color: var(--nykaa-white);
   padding: 10px 0;
   font-size: 14px;
@@ -49,19 +48,6 @@
   font-size: 16px;
 }
 
-// .offers-nav-element a:hover::after {
-//   color: black !important; /* Changes text color to black */
-//   text-decoration: none;
-//   font-weight: bold;
-//   display: flex;
-//   align-items: center;
-//   gap: 5px;
-// }
-
-// .offers-nav-element .icon svg a:hover::after {
-//   fill: black !important; /* Changes icon color to black */
-// }
-
 /* Main Header */
 .main-header {
   background-color: var(--nykaa-white);
@@ -69,7 +55,6 @@
   position: fixed;
   width: 100%;
   top: 44px;
-  /* Height of top bar */
   z-index: 1000;
 }
 
@@ -239,4 +224,4 @@
   margin: 0 auto;
   padding: 0 15px;
   position: relative;
-}
+} 
