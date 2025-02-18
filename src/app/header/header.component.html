@@ -85,20 +85,27 @@
 
     <!-- Category Navigation -->
     <nav class="category-nav">
-        <div class="category-container">
-            <ul>
-                <li *ngFor="let category of categoryItems">
-                    <a [href]="category['nav-link']" (mouseenter)="showCategoryMenu = true" 
-                    (mouseleave)="showCategoryMenu = false">{{ category['nav-name'] }}</a>
-                </li>
-            </ul>
+        <div class="category-nav-container">
+            <div class="category-container">
+                <ul>
+                    <li *ngFor="let category of categoryItems">
+                        <a [href]="'/api/categories/' + category.id" 
+                           (mouseenter)="onCategoryHover(category.id)">
+                            {{ category.name }}
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Category Menu Component -->
+                <app-category-menu 
+                    *ngIf="showCategoryMenu" 
+                    [categoryId]="selectedCategoryId"
+                    class="category-menu-dropdown"
+                    [style.display]="showCategoryMenu ? 'block' : 'none'"
+                    (mouseleave)="showCategoryMenu = false"
+                    (mouseenter)="showCategoryMenu = true">
+                </app-category-menu>
+            </div>
         </div>
-        
-        <!-- Category Menu Component -->
-        <app-category-menu 
-            *ngIf="showCategoryMenu" 
-            class="category-menu-dropdown"
-            [style.display]="showCategoryMenu ? 'block' : 'none'">
-        </app-category-menu>
     </nav>
 </header>
