@@ -5,9 +5,9 @@ import { Product } from '../../../types/product.types';
 import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
+  selector: 'app-product-grid',
   standalone: true,
   imports: [CommonModule, ProductCardComponent],
-  selector: 'app-product-grid',
   templateUrl: './product-grid.component.html',
   styleUrls: ['./product-grid.component.css'],
 })
