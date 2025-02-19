@@ -33,8 +33,24 @@ export class AuthService {
     return !!this.getToken();
   }
 
+  getUserName(): string {
+    const token = this.getToken();
+    if (token) {
+      try {
+        // Decode the JWT token to get user info
+        const tokenData = JSON.parse(atob(token.split('.')[1]));
+        return tokenData.name || 'User';
+      } catch (e) {
+        return 'User';
+      }
+    }
+    return '';
+  }
+
   logout() {
     localStorage.removeItem('token');
+    // You might want to clear other stored data as well
+    // localStorage.clear(); // Use this if you want to clear all localStorage
   }
 
   signup(userData: any): Observable<any> {

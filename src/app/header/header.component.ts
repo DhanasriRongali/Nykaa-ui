@@ -4,12 +4,13 @@ import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { NavItems } from '../../types/header.types';
 import { CategoryMenuComponent } from '../nav/category/category.component';
-import { RouterModule } from '@angular/router';
-import { CartComponent } from '../cart/cart.component';
-import { SignupComponent } from '../auth/signup/signup.component';
-import { LoginComponent } from '../auth/login/login.component';
-import { LoginModalService } from '../../services/login-modal.service';
 import { forkJoin } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
+import { CartService } from '../../services/cart.service';
+import { LoginComponent } from '../auth/login/login.component';
+import { SignupComponent } from '../auth/signup/signup.component';
+import { CartComponent } from '../cart/cart.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -18,9 +19,10 @@ import { forkJoin } from 'rxjs';
     CommonModule,
     RouterModule,
     CategoryMenuComponent,
-    CartComponent,
+    HttpClientModule,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    CartComponent
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
@@ -33,11 +35,16 @@ export class HeaderComponent implements OnInit {
   cartItemCount = 0;
   selectedCategoryId: string = '';
   categoryData: { [key: string]: any } = {};
+  isLoginVisible$ = this.cartService.isLoginModalVisible();
+  isSignupVisible$ = this.cartService.isSignupModalVisible();
+  isCartVisible$ = this.cartService.isCartVisible();
+  isLoggedIn$ = this.authService.isLoggedIn();
+  showAccountMenu = false;
 
   constructor(
     private headerService: HeaderService,
-    private cartService: CartService,
-    private loginModalService: LoginModalService
+    public cartService: CartService,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -74,11 +81,30 @@ export class HeaderComponent implements OnInit {
     this.showCategoryMenu = true;
   }
 
-  toggleAccountMenu() {
-    this.loginModalService.toggleLogin();
+  toggleLogin() {
+    if (this.authService.isLoggedIn()) {
+      this.authService.logout();
+      window.location.reload();
+    } else {
+      this.cartService.toggleLoginModal();
+    }
   }
 
   toggleCart() {
     this.cartService.toggleCart();
+  }
+
+  toggleAccountMenu() {
+    this.showAccountMenu = !this.showAccountMenu;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.showAccountMenu = false;
+    window.location.reload();
+  }
+
+  closeAccountMenu() {
+    this.showAccountMenu = false;
   }
 }

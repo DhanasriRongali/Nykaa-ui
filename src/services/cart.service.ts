@@ -9,6 +9,8 @@ import { AuthService } from './auth.service';
 export class CartService {
   private cartItemCount = new BehaviorSubject<number>(0);
   private cartVisible = new BehaviorSubject<boolean>(false);
+  private loginModalVisible = new BehaviorSubject<boolean>(false);
+  private signupModalVisible = new BehaviorSubject<boolean>(false);
   private apiUrl = 'http://192.168.1.140:3000/api';
 
   constructor(
@@ -52,6 +54,8 @@ export class CartService {
 
   toggleCart() {
     this.cartVisible.next(!this.cartVisible.value);
+    this.loginModalVisible.next(false);
+    this.signupModalVisible.next(false);
   }
 
   isCartVisible(): Observable<boolean> {
@@ -67,5 +71,33 @@ export class CartService {
       productId, 
       quantity 
     });
+  }
+
+  toggleLoginModal() {
+    this.loginModalVisible.next(!this.loginModalVisible.value);
+    this.signupModalVisible.next(false);
+    this.cartVisible.next(false);
+  }
+
+  isLoginModalVisible(): Observable<boolean> {
+    return this.loginModalVisible.asObservable();
+  }
+
+  closeLoginModal() {
+    this.loginModalVisible.next(false);
+  }
+
+  toggleSignupModal() {
+    this.signupModalVisible.next(!this.signupModalVisible.value);
+    this.loginModalVisible.next(false);
+    this.cartVisible.next(false);
+  }
+
+  isSignupModalVisible(): Observable<boolean> {
+    return this.signupModalVisible.asObservable();
+  }
+
+  closeSignupModal() {
+    this.signupModalVisible.next(false);
   }
 } 

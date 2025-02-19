@@ -72,10 +72,21 @@
                     </div>
                 </div>
                 <div class="account-section">
-                    <button class="account-btn" (click)="toggleAccountMenu()">
+                    <button class="account-btn" 
+                        [class.logged-in]="authService.isLoggedIn()"
+                        (click)="authService.isLoggedIn() ? toggleAccountMenu() : toggleLogin()">
                         <span class="icon">👤</span>
-                        <span class="text">Account</span>
+                        <span class="text">{{ authService.isLoggedIn() ? authService.getUserName() : 'Account' }}</span>
                     </button>
+
+                    <!-- Account Dropdown Menu -->
+                    <div class="account-dropdown" *ngIf="showAccountMenu && authService.isLoggedIn()" (clickOutside)="closeAccountMenu()">
+                        <a class="dropdown-item" routerLink="/profile">My Profile</a>
+                        <a class="dropdown-item" routerLink="/orders">My Orders</a>
+                        <a class="dropdown-item" routerLink="/wishlist">Wishlist</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" (click)="logout()">Sign Out</a>
+                    </div>
                 </div>
                 <button class="cart-btn" (click)="toggleCart()">
                     <span class="icon">🛒</span>
@@ -111,7 +122,9 @@
             </div>
         </div>
     </nav>
-    <app-cart></app-cart>
-    <app-login></app-login>
-    <app-signup></app-signup>
+
+    <!-- Update the components section at the bottom of the header -->
+    <app-login *ngIf="isLoginVisible$ | async"></app-login>
+    <app-signup *ngIf="isSignupVisible$ | async"></app-signup>
+    <app-cart *ngIf="isCartVisible$ | async"></app-cart>
 </header>

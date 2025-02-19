@@ -8,13 +8,12 @@ import { Router, RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div class="cart-overlay" [class.active]="isVisible">
-      <div class="cart-sidebar" [class.active]="isVisible">
+    <div class="cart-overlay" *ngIf="cartService.isCartVisible() | async" (click)="closeCart()">
+      <div class="cart-modal" (click)="$event.stopPropagation()">
         <div class="cart-header">
-          <h2>Shopping Cart ({{cartItems.length}} items)</h2>
+          <h2>Shopping Cart</h2>
           <button class="close-btn" (click)="closeCart()">✕</button>
         </div>
-        
         <div class="cart-content">
           <!-- Coupon Section -->
           <div class="coupon-section">
@@ -107,51 +106,34 @@ import { Router, RouterModule } from '@angular/router';
     .cart-overlay {
       position: fixed;
       top: 0;
-      right: 0;
-      bottom: 0;
       left: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 9999;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-
-      &.active {
-        opacity: 1;
-        visibility: visible;
-      }
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: flex-end;
+      z-index: 1000;
     }
 
-    .cart-sidebar {
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 400px;
-      height: 100vh;
+    .cart-modal {
       background: white;
-      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+      height: 100%;
+      width: 100%;
+      max-width: 400px;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      transform: translateX(100%);
-      transition: transform 0.3s ease;
-      z-index: 10000;
-
-      &.active {
-        transform: translateX(0);
-      }
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .cart-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #eee;
+      margin-bottom: 20px;
 
       h2 {
         margin: 0;
-        font-size: 24px;
+        color: var(--nykaa-pink);
       }
 
       .close-btn {
@@ -159,7 +141,7 @@ import { Router, RouterModule } from '@angular/router';
         border: none;
         font-size: 24px;
         cursor: pointer;
-        padding: 5px;
+        color: #666;
         
         &:hover {
           color: var(--nykaa-pink);
@@ -437,15 +419,12 @@ export class CartComponent implements OnInit {
   ];
 
   constructor(
-    private cartService: CartService,
+    public cartService: CartService,
     // private router: Router
   ) {}
 
   ngOnInit() {
     this.loadCartItems();
-    this.cartService.isCartVisible().subscribe(visible => {
-      this.isVisible = visible;
-    });
   }
 
   loadCartItems() {
