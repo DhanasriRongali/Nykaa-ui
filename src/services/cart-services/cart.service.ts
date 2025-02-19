@@ -4,31 +4,26 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { AuthService } from '../auth-services/auth.service';
 import { environment } from '../../environments/environment';
 
+interface CartItem {
+  product_id: string;
+  quantity: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private apiUrl = `${environment.apiUrl}/cart`;
   private cartItemCount = new BehaviorSubject<number>(0);
   private cartVisible = new BehaviorSubject<boolean>(false);
   private loginModalVisible = new BehaviorSubject<boolean>(false);
   private signupModalVisible = new BehaviorSubject<boolean>(false);
-  private apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient,
     private authService: AuthService
   ) {
-    this.loadCartCount();
-  }
-
-  private loadCartCount() {
-    // Get cart count from local storage or API
-    const count = localStorage.getItem('cartCount');
-    this.cartItemCount.next(count ? parseInt(count) : 0);
-  }
-
-  getCartCount(): Observable<number> {
-    return this.cartItemCount.asObservable();
+    this.updateCartCount();
   }
 
   private getHeaders(): HttpHeaders {
@@ -36,21 +31,50 @@ export class CartService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  addToCart(productId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/cart/add`, { productId }, { headers: this.getHeaders() });
+  addToCart(item: CartItem): Observable<any> {
+    return this.http.post(`${this.apiUrl}/cart/add`, item, { headers: this.getHeaders() });
   }
 
-  getCartItems(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/cart`, { headers: this.getHeaders() });
+  getCartItems(): Observable<any[]> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    });
+
+    return this.http.get<any[]>(`${this.apiUrl}`, { headers });
   }
 
-  removeFromCart(productId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/cart/${productId}`);
+  removeFromCart(cartItemId: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authService.getToken()}`
+    });
+    
+    console.log('Removing cart item with ID:', cartItemId);
+    
+    return this.http.delete(`${this.apiUrl}/items/${cartItemId}`, { 
+      headers,
+      observe: 'response'
+    });
   }
 
-  updateCartCount(count: number) {
-    this.cartItemCount.next(count);
-    localStorage.setItem('cartCount', count.toString());
+  updateCartCount() {
+    if (this.authService.isLoggedIn()) {
+      this.getCartItems().subscribe({
+        next: (items) => {
+          this.cartItemCount.next(items.length);
+        },
+        error: (error) => {
+          console.error('Error updating cart count:', error);
+          this.cartItemCount.next(0);
+        }
+      });
+    } else {
+      this.cartItemCount.next(0);
+    }
+  }
+
+  getCartCount(): Observable<number> {
+    return this.cartItemCount.asObservable();
   }
 
   toggleCart() {
@@ -67,11 +91,12 @@ export class CartService {
     this.cartVisible.next(false);
   }
 
-  updateQuantity(productId: string, quantity: number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/cart/update`, { 
-      productId, 
-      quantity 
+  updateQuantity(cartItemId: string, quantity: number): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authService.getToken()}`
     });
+    return this.http.put(`${this.apiUrl}/items/${cartItemId}`, { quantity }, { headers });
   }
 
   toggleLoginModal() {
@@ -100,5 +125,10 @@ export class CartService {
 
   closeSignupModal() {
     this.signupModalVisible.next(false);
+  }
+
+  loadCartCount() {
+    const count = localStorage.getItem('cartCount');
+    this.cartItemCount.next(count ? parseInt(count) : 0);
   }
 } 

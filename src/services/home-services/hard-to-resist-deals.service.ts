@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -170,5 +171,20 @@ export class HardToResistDealsService {
 
   getCards() {
     return this.cards;
+  }
+
+  getDeals(): Observable<any[]> {
+    return of([
+      {
+        title: 'Summer Sale',
+        description: 'Up to ₹500 off',
+        // ...
+      },
+      {
+        title: 'Flash Deal',
+        description: 'Flat ₹200 off on orders above ₹1000',
+        // ...
+      }
+    ]);
   }
 }

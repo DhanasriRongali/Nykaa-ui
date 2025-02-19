@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '../../services/header-services/header.service';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavItems } from '../../types/header.types';
 import { CategoryMenuComponent } from '../nav/category/category.component';
@@ -39,11 +39,13 @@ export class HeaderComponent implements OnInit {
   isSignupVisible$ = this.cartService.isSignupModalVisible();
   isCartVisible$ = this.cartService.isCartVisible();
   isLoggedIn$ = this.authService.isLoggedIn();
+  userName$ = this.authService.getUserName();
 
   constructor(
     private headerService: HeaderService,
     public cartService: CartService,
-    public authService: AuthService
+    public authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -98,12 +100,48 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout();
-    this.showAccountMenu = false;
-    window.location.reload();
+    this.authService.logout().subscribe({
+      next: () => {
+        this.showAccountMenu = false;
+        this.router.navigate(['/']);
+      },
+      error: (error) => {
+        console.error('Logout error:', error);
+        this.authService.logoutLocally();
+        this.router.navigate(['/']);
+      }
+    });
   }
 
   closeAccountMenu() {
     this.showAccountMenu = false;
   }
+
+  navigateToProfile() {
+    this.closeAccountMenu();
+    this.router.navigate(['/profile']).then(() => {
+      console.log('Navigation to profile completed');
+    }).catch(error => {
+      console.error('Navigation error:', error);
+    });
+  }
+
+  navigateToOrders() {
+    this.closeAccountMenu();
+    this.router.navigate(['/orders']).then(() => {
+      console.log('Navigation to orders completed');
+    }).catch(error => {
+      console.error('Navigation error:', error);
+    });
+  }
+
+  navigateToWishlist() {
+    this.closeAccountMenu();
+    this.router.navigate(['/wishlist']).then(() => {
+      console.log('Navigation to wishlist completed');
+    }).catch(error => {
+      console.error('Navigation error:', error);
+    });
+  }
+  
 }

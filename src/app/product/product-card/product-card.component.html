@@ -14,9 +14,9 @@
     <div class="price-ratings-container">
       <!-- Price -->
       <div class="price">
-        <span class="discounted-price">${{ product.price.toFixed(2) }}</span>
+        <span class="discounted-price">₹{{ product.price.toFixed(2) }}</span>
         <span *ngIf="product.price < product.original_price" class="original-price">
-          ${{ product.original_price.toFixed(2) }}
+          ₹{{ product.original_price.toFixed(2) }}
         </span>
       </div>
 
@@ -38,6 +38,6 @@
   <!-- Add to Bag & Wishlist -->
   <div class="hover-buttons" [ngClass]="{ 'show': isHovered }">
     <button class="wishlist-btn">♡</button>
-    <button class="add-to-bag-btn">Add to Bag</button>
+    <button class="add-to-bag-btn" (click)="addToCart()">Add to Bag</button>
   </div>
 </div>

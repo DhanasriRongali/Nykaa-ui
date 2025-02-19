@@ -1,0 +1,122 @@
+<div class="profile-layout">
+  <!-- Side Menu -->
+  <div class="side-menu">
+    <div class="user-info">
+      <div class="avatar">
+        <span>{{ userProfile?.name?.charAt(0) || 'U' }}</span>
+      </div>
+      <h3>{{ userProfile?.name || 'User' }}</h3>
+      <p>{{ userProfile?.email }}</p>
+    </div>
+    
+    <nav class="menu-items">
+      <a class="menu-item active" routerLink="/profile">
+        <i class="fas fa-user"></i>
+        My Profile
+      </a>
+      <a class="menu-item" routerLink="/orders">
+        <i class="fas fa-box"></i>
+        My Orders
+      </a>
+      <a class="menu-item" routerLink="/wishlist">
+        <i class="fas fa-heart"></i>
+        Wishlist
+      </a>
+      <a class="menu-item" routerLink="/addresses">
+        <i class="fas fa-map-marker-alt"></i>
+        Addresses
+      </a>
+      <button class="menu-item logout" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+      </button>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="profile-container">
+      <div class="profile-header">
+        <h2>My Profile</h2>
+      </div>
+      
+      <div class="profile-content" *ngIf="userProfile">
+        <div class="profile-section">
+          <div class="section-header">
+            <h3>Personal Information</h3>
+            <button class="edit-btn" (click)="toggleEdit('personal')" *ngIf="!editMode.personal">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+          </div>
+          
+          <div *ngIf="!editMode.personal" class="info-display">
+            <div class="info-group">
+              <label>Name</label>
+              <p>{{ userProfile.name }}</p>
+            </div>
+            <div class="info-group">
+              <label>Email</label>
+              <p>{{ userProfile.email }}</p>
+            </div>
+          </div>
+
+          <form *ngIf="editMode.personal" class="edit-form" (ngSubmit)="saveChanges('personal')">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" [(ngModel)]="editedProfile.name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" [(ngModel)]="editedProfile.email" name="email" required>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="save-btn">Save Changes</button>
+              <button type="button" class="cancel-btn" (click)="cancelEdit('personal')">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="profile-section">
+          <div class="section-header">
+            <h3>Contact Information</h3>
+            <button class="edit-btn" (click)="toggleEdit('contact')" *ngIf="!editMode.contact">
+              <i class="fas fa-edit"></i> Edit
+            </button>
+          </div>
+
+          <div *ngIf="!editMode.contact" class="info-display">
+            <div class="info-group">
+              <label>Phone</label>
+              <p>{{ userProfile.phone || 'Not added' }}</p>
+            </div>
+          </div>
+
+          <form *ngIf="editMode.contact" class="edit-form" (ngSubmit)="saveChanges('contact')">
+            <div class="form-group">
+              <label>Phone</label>
+              <input type="tel" [(ngModel)]="editedProfile.phone" name="phone" required>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="save-btn">Save Changes</button>
+              <button type="button" class="cancel-btn" (click)="cancelEdit('contact')">Cancel</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="profile-section">
+          <h3>Addresses</h3>
+          <div *ngIf="userProfile.addresses?.length; else noAddress">
+            <div class="address-card" *ngFor="let address of userProfile.addresses">
+              <p class="address-type">{{ address.type }}</p>
+              <p>{{ address.street }}</p>
+              <p>{{ address.city }}, {{ address.state }} {{ address.pincode }}</p>
+            </div>
+          </div>
+          <ng-template #noAddress>
+            <p class="no-data">No addresses added yet</p>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 

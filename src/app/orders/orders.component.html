@@ -1,0 +1,87 @@
+<div class="orders-layout">
+  <!-- Side Menu (same as profile) -->
+  <div class="side-menu">
+    <div class="user-info">
+      <div class="avatar">
+        <span>{{ authService.getUserName() | async | slice:0:1 }}</span>
+      </div>
+      <h3>{{ authService.getUserName() | async }}</h3>
+    </div>
+    
+    <nav class="menu-items">
+      <a class="menu-item" routerLink="/profile">
+        <i class="fas fa-user"></i>
+        My Profile
+      </a>
+      <a class="menu-item active" routerLink="/orders">
+        <i class="fas fa-box"></i>
+        My Orders
+      </a>
+      <a class="menu-item" routerLink="/wishlist">
+        <i class="fas fa-heart"></i>
+        Wishlist
+      </a>
+      <a class="menu-item" routerLink="/addresses">
+        <i class="fas fa-map-marker-alt"></i>
+        Addresses
+      </a>
+      <button class="menu-item logout" (click)="authService.logout()">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+      </button>
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="orders-container">
+      <div class="orders-header">
+        <h2>My Orders</h2>
+      </div>
+
+      <div class="orders-content">
+        <div *ngIf="isLoading" class="loading">
+          Loading orders...
+        </div>
+
+        <div *ngIf="!isLoading && orders.length === 0" class="no-orders">
+          <p>You haven't placed any orders yet</p>
+          <a routerLink="/" class="shop-now-btn">Start Shopping</a>
+        </div>
+
+        <div *ngIf="!isLoading && orders.length > 0" class="orders-list">
+          <div *ngFor="let order of orders" class="order-card">
+            <div class="order-header">
+              <div class="order-info">
+                <span class="order-id">Order #{{ order.orderId }}</span>
+                <span class="order-date">{{ order.date | date }}</span>
+              </div>
+              <span [class]="'order-status ' + getOrderStatusClass(order.status)">
+                {{ order.status }}
+              </span>
+            </div>
+
+            <div class="order-items">
+              <div *ngFor="let item of order.items" class="order-item">
+                <img [src]="item.image" [alt]="item.name">
+                <div class="item-details">
+                  <h4>{{ item.name }}</h4>
+                  <p class="quantity">Qty: {{ item.quantity }}</p>
+                  <p class="price">₹{{ item.price }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="order-footer">
+              <div class="total">
+                <span>Total:</span>
+                <span class="amount">₹{{ order.total }}</span>
+              </div>
+              <button class="track-btn">Track Order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
