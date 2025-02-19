@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <app-header *ngIf="!isAuthRoute()"></app-header>
-    <router-outlet></router-outlet>
-    <app-footer *ngIf="!isAuthRoute()"></app-footer>
-  `
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    HttpClientModule
+  ],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private router: Router) {}
-
-  isAuthRoute(): boolean {
-    return this.router.url.includes('/auth');
-  }
+  title = 'Nykaa';
 } 

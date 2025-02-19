@@ -71,15 +71,13 @@
                         <input type="text" placeholder="Search on Nykaa" class="search-input">
                     </div>
                 </div>
-                <div class="account-section">
-                    <button class="account-btn" (click)="toggleAccountMenu()">
-                        <span class="icon">👤</span>
-                        <span class="text">Account</span>
-                    </button>
-                </div>
-                <button class="cart-btn" (click)="toggleCart()">
+                <button class="account-btn">
+                    <span class="icon">👤</span>
+                    <span class="text">Account</span>
+                </button>
+                <button class="cart-btn">
                     <span class="icon">🛒</span>
-                    <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+                    <span class="cart-count">0</span>
                     <span class="text">Cart</span>
                 </button>
             </div>
@@ -111,9 +109,4 @@
             </div>
         </div>
     </nav>
-
-    <app-cart></app-cart>
-
-    <app-login></app-login>
-    <app-signup></app-signup>
 </header>
