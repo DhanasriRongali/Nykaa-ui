@@ -70,11 +70,24 @@
                         <input type="text" placeholder="Search on Nykaa" class="search-input">
                     </div>
                 </div>
-                <button class="account-btn">
-                    <span class="icon">👤</span>
-                    <span class="text">Account</span>
-                </button>
-                <button class="cart-btn">
+                <div class="account-section">
+                    <button class="account-btn" 
+                        [class.logged-in]="authService.isLoggedIn()"
+                        (click)="authService.isLoggedIn() ? toggleAccountMenu() : toggleLogin()">
+                        <span class="icon">👤</span>
+                        <span class="text">{{ authService.isLoggedIn() ? authService.getUserName() : 'Account' }}</span>
+                    </button>
+
+                    <!-- Account Dropdown Menu -->
+                    <div class="account-dropdown" *ngIf="showAccountMenu && authService.isLoggedIn()" (clickOutside)="closeAccountMenu()">
+                        <a class="dropdown-item" routerLink="/profile">My Profile</a>
+                        <a class="dropdown-item" routerLink="/orders">My Orders</a>
+                        <a class="dropdown-item" routerLink="/wishlist">Wishlist</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" (click)="logout()">Sign Out</a>
+                    </div>
+                </div>
+                <button class="cart-btn" (click)="toggleCart()">
                     <span class="icon">🛒</span>
                     <span class="cart-count">0</span>
                     <span class="text">Cart</span>
@@ -108,4 +121,9 @@
             </div>
         </div>
     </nav>
+
+    <!-- Update the components section at the bottom of the header -->
+    <app-login *ngIf="isLoginVisible$ | async"></app-login>
+    <app-signup *ngIf="isSignupVisible$ | async"></app-signup>
+    <app-cart *ngIf="isCartVisible$ | async"></app-cart>
 </header>
