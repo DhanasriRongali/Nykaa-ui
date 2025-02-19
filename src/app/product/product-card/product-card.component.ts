@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from '../../../services/cart-services/cart.service';
 import { AuthService } from '../../../services/auth-services/auth.service';
 import { ToastService } from '../../../services/toast-services/toast.service';
@@ -19,7 +20,8 @@ export class ProductCardComponent {
   constructor(
     private cartService: CartService,
     private authService: AuthService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -65,5 +67,9 @@ export class ProductCardComponent {
   onMouseLeave() {
     this.isHovered = false;
     this.hoverImage = this.product.images[0]; // Reset on leave
+  }
+
+  navigateToProduct() {
+    this.router.navigate(['/product', this.product.id]);
   }
 }

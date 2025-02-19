@@ -1,11 +1,24 @@
+export type Review = {
+    user?: {
+        name?: string;
+    };
+    created_at?: string;
+    comment?: string;
+    rating?: number;
+};
+
 export type Ratings = {
-    review_count?: number;
+    count?: number;
     average_rating?: number;
+    rating_count?: {
+        [key: string]: number;
+    };
+    review?: any[];
 };
 
 export type Offer = {
-    offer_image?: string;
-    offer_name?: string;
+    image?: string;
+    name?: string;
 };
 
 export type CustomProps = {
@@ -15,10 +28,16 @@ export type CustomProps = {
 export type Product = {
     id: string;
     name: string;
+    description?: string;
     original_price?: number;
     price: number;
+    stock?: number;
+    category_id?: string;
+    sub_category_id?: string;
+    child_sub_category_id?: string;
+    brand_id?: string;
     images: string[];
-    ratings: Ratings;
+    rating: Ratings;
     custom_props: CustomProps; 
     badge?: string;
     created_at: string;

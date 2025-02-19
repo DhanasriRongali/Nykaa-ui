@@ -1,0 +1,47 @@
+<div class="overview">
+  <!-- Left Side - Images -->
+  <div class="images-section">
+    <div class="main-image">
+      <img [src]="getDisplayImage()" [alt]="name">
+      <button class="wishlist-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </button>
+    </div>
+    <div class="thumbnails">
+      <img *ngFor="let image of getOtherImages()" 
+           [src]="image" 
+           [alt]="name"
+           (click)="selectImage(image)"
+           class="thumb">
+    </div>
+  </div>
+
+  <!-- Right Side - Info -->
+  <div class="info-section">
+    <div class="info-content">
+      <h1 class="product-name">{{ name }}</h1>
+
+      <div class="price-wrapper">
+        <div class="price-section">
+          <span class="price">₹{{ price?.toFixed(2) || '0.00' }}</span>
+          <span class="bestseller-badge" *ngIf="badge">{{ badge }}</span>
+        </div>
+        
+        <div class="offer-banner" *ngIf="offer">
+          <img *ngIf="offer?.image" 
+               [src]="offer?.image" 
+               [alt]="offer?.name || ''">
+          <span>{{ offer?.name }}</span>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button class="add-to-bag">Add to Bag</button>
+        <button class="add-to-wishlist">Add to Wishlist</button>
+      </div>
+    </div>
+  </div>
+</div>
+  

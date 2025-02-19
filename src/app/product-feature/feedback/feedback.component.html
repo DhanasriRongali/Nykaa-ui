@@ -1,0 +1,41 @@
+<div class="feedback-section" *ngIf="rating">
+  <h3>Customer Reviews</h3>
+  <div class="rating-summary">
+    <div class="average-rating">
+      <div class="rating-number">{{ getAverageRating() }}</div>
+      <div class="rating-stars">★★★★★</div>
+      <div class="total-ratings">{{ getTotalRatings() }} ratings</div>
+    </div>
+
+    <div class="rating-bars">
+      <div class="rating-bar" *ngFor="let key of getRatingKeys(rating?.rating_count)">
+        <span class="star-label">{{ key }}★</span>
+        <div class="progress-container">
+          <div class="progress" 
+               [style.width.%]="getProgressWidth(key)">
+          </div>
+        </div>
+        <span class="count">{{ rating?.rating_count?.[key] || 0 }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="reviews-section" *ngIf="rating?.review?.length">
+    <div class="reviews-header">
+      <h3 class="reviews-title">Customer Reviews</h3>
+      <div class="sort-reviews">
+        Sort by: Most Recent
+      </div>
+    </div>
+
+    <div class="review-card" *ngFor="let review of rating?.review">
+      <div class="reviewer-info">
+        <span class="reviewer-name">{{ review?.user?.name }}</span>
+        <span class="review-date">{{ review?.created_at }}</span>
+      </div>
+      <div class="review-rating">{{ review?.rating }}⭐</div>
+      <div class="review-content">{{ review?.comment }}</div>
+    </div>
+  </div>
+</div>
+  

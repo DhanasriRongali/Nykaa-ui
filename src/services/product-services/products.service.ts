@@ -15,14 +15,14 @@ const dummyMakeupProducts: Product[] = [
       "https://images-static.nykaa.com/media/catalog/product/tr:w-220,h-220,cm-pad_resize/c/d/cd880fbMACXX00001503_1.jpg",
       "https://example.com/images/mac-ruby-woo-2.jpg"
     ],
-    ratings: {
-      review_count: 2458,
+    rating: {
+      count: 2458,
       average_rating: 4.8
     },
     custom_props: {
       offer: {
-        offer_name: "Buy 2 Get 1 Free",
-        offer_image: "https://example.com/offers/mac-offer.jpg"
+        name: "Buy 2 Get 1 Free",
+        image: "https://example.com/offers/mac-offer.jpg"
       }
     },
     badge: "Bestseller",
@@ -38,8 +38,8 @@ const dummyMakeupProducts: Product[] = [
       "https://example.com/images/fenty-foundation-1.jpg",
       "https://example.com/images/fenty-foundation-2.jpg"
     ],
-    ratings: {
-      review_count: 3256,
+    rating: {
+      count: 3256,
       average_rating: 4.7
     },
     custom_props: {},
@@ -54,13 +54,13 @@ const dummyMakeupProducts: Product[] = [
       "https://example.com/images/ct-powder-1.jpg",
       "https://example.com/images/ct-powder-2.jpg"
     ],
-    ratings: {
-      review_count: 1875,
+    rating: {
+      count: 1875,
       average_rating: 4.9
     },
     custom_props: {
       offer: {
-        offer_name: "15% Off Limited Time",
+        name: "15% Off Limited Time",
       }
     },
     badge: "New",
@@ -76,8 +76,8 @@ const dummyMakeupProducts: Product[] = [
       "https://example.com/images/nars-concealer-1.jpg",
       "https://example.com/images/nars-concealer-2.jpg"
     ],
-    ratings: {
-      review_count: 4521,
+    rating: {
+      count: 4521,
       average_rating: 4.6
     },
     custom_props: {},
@@ -93,13 +93,13 @@ const dummyMakeupProducts: Product[] = [
       "https://example.com/images/rare-blush-1.jpg",
       "https://example.com/images/rare-blush-2.jpg"
     ],
-    ratings: {
-      review_count: 2890,
+    rating: {
+      count: 2890,
       average_rating: 4.8
     },
     custom_props: {
       offer: {
-        offer_name: "10% Off for Members",
+        name: "10% Off for Members",
       }
     },
     badge: "Trending",
@@ -130,6 +130,15 @@ export class ProductService {
     );
   }
 
+  getProductById(productId: string): Observable<Product | null> {
+    return this.http.get<Product>(`${this.apiUrl}/${productId}`).pipe(
+      map(response => response),
+      catchError(error => {
+        console.error('Error fetching product by ID:', error);
+        return of(null);
+      })
+    );
+    
   formatPrice(price: number): string {
     return `₹${price.toFixed(2)}`;
   }
