@@ -1,0 +1,90 @@
+<div class="cart-overlay" *ngIf="cartService.isCartVisible() | async" (click)="closeCart()">
+    <div class="cart-modal" (click)="$event.stopPropagation()">
+        <div class="cart-header">
+            <h2>Shopping Cart</h2>
+            <button class="close-btn" (click)="closeCart()">✕</button>
+        </div>
+        <div class="cart-content">
+            <!-- Coupon Section -->
+            <div class="coupon-section">
+                <div class="coupon-header" (click)="toggleCoupons()">
+                    <h3>Available Coupons</h3>
+                    <span class="toggle-icon">{{ showAllCoupons ? '▼' : '▶' }}</span>
+                </div>
+
+                <div class="coupon-content" *ngIf="showAllCoupons">
+                    <div class="coupon-list">
+                        <div class="coupon-item" *ngFor="let coupon of availableCoupons">
+                            <div class="coupon-details">
+                                <span class="code">{{coupon.code}}</span>
+                                <p class="description">{{coupon.description}}</p>
+                                <p class="min-amount" *ngIf="coupon.minAmount">
+                                    Min order: ₹{{coupon.minAmount}}
+                                </p>
+                            </div>
+                            <button [disabled]="!isCouponApplicable(coupon) || appliedCoupon === coupon.code"
+                                (click)="applyCoupon(coupon.code)" [class.applied]="appliedCoupon === coupon.code">
+                                {{ appliedCoupon === coupon.code ? 'Applied' : 'Apply' }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="error-message" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                </div>
+
+                <div class="applied-coupon" *ngIf="appliedCoupon">
+                    <div class="coupon-info">
+                        <span class="code">{{appliedCoupon}}</span>
+                        <span class="savings">Saved ₹{{discount}}</span>
+                    </div>
+                    <button class="remove-coupon" (click)="removeCoupon()">✕</button>
+                </div>
+            </div>
+
+            <!-- Cart Items -->
+            <div class="cart-items">
+                <div *ngFor="let item of cartItems" class="cart-item">
+                    <img [src]="item.product.image" [alt]="item.product.name">
+                    <div class="item-details">
+                        <h3>{{ item.product.name }}</h3>
+                        <div class="quantity-controls">
+                            <button (click)="updateQuantity(item, -1)">-</button>
+                            <span>{{ item.quantity }}</span>
+                            <button (click)="updateQuantity(item, 1)">+</button>
+                        </div>
+                        <p class="price">₹{{ item.product.price * item.quantity }}</p>
+                        <button class="remove-btn" (click)="removeItem(item.product._id)">Remove</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="cart-summary" *ngIf="cartItems.length">
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span>₹{{ getSubTotal() }}</span>
+                </div>
+                <div class="summary-item" *ngIf="discount > 0">
+                    <span>Discount</span>
+                    <span>-₹{{ discount }}</span>
+                </div>
+                <div class="summary-item">
+                    <span>Delivery Charges</span>
+                    <span>{{ deliveryCharges === 0 ? 'FREE' : '₹' + deliveryCharges }}</span>
+                </div>
+                <div class="summary-item total">
+                    <span>Total</span>
+                    <span>₹{{ getTotal() }}</span>
+                </div>
+                <button class="checkout-btn" (click)="proceedToCheckout()">Proceed to Buy</button>
+            </div>
+        </div>
+
+        <div class="empty-cart" *ngIf="!cartItems.length">
+            <p>Your cart is empty</p>
+            <button class="continue-shopping" routerLink="/" (click)="closeCart()">Continue Shopping</button>
+        </div>
+    </div>
+</div>
