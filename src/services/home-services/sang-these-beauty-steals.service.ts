@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BeautyStealImage } from '../types/beauty-steal.types';
+import { BeautyStealImage } from '../../types/beauty-steal.types';
 
 export interface BeautyStealsData {
     images: BeautyStealImage[];

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FlashSaleImage } from '../types/flash-sale.types';
+import { FlashSaleImage } from '../../types/flash-sale.types';
 
 @Injectable({
     providedIn: 'root'

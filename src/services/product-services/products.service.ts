@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { Product } from '../types/product.types';
+import { Product } from '../../types/product.types';
+import { environment } from '../../environments/environment';
 
 const dummyMakeupProducts: Product[] = [
   {
@@ -111,7 +112,7 @@ const dummyMakeupProducts: Product[] = [
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://192.168.1.140:3000/api/products';
+  private apiUrl = `${environment.apiUrl}/products`;
 
   constructor(private http: HttpClient) {}
 

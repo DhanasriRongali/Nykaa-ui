@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AuthService } from './auth.service';
+import { AuthService } from '../auth-services/auth.service';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class CartService {
   private cartVisible = new BehaviorSubject<boolean>(false);
   private loginModalVisible = new BehaviorSubject<boolean>(false);
   private signupModalVisible = new BehaviorSubject<boolean>(false);
-  private apiUrl = 'http://192.168.1.140:3000/api';
+  private apiUrl = environment.apiUrl;
 
   constructor(
     private http: HttpClient,

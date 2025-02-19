@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, map } from 'rxjs';
-import { NavItems } from '../types/header.types';
+import { NavItems } from '../../types/header.types';
+import { environment } from '../../environments/environment';
 
 interface CategoryData {
   id: string;
@@ -13,7 +14,7 @@ interface CategoryData {
   providedIn: 'root'
 })
 export class HeaderService {
-  private apiUrl = 'http://192.168.1.150:8000/api';
+  private apiUrl = environment.apiUrl;
   private categoryData: { [key: string]: CategoryData } = {};
 
   constructor(private http: HttpClient) { }
