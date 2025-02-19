@@ -76,14 +76,16 @@
                         [class.logged-in]="authService.isLoggedIn()"
                         (click)="authService.isLoggedIn() ? toggleAccountMenu() : toggleLogin()">
                         <span class="icon">👤</span>
-                        <span class="text">{{ authService.isLoggedIn() ? authService.getUserName() : 'Account' }}</span>
+                        <span class="text">
+                            {{ authService.isLoggedIn() ? (userName$ | async) : 'Account' }}
+                        </span>
                     </button>
 
                     <!-- Account Dropdown Menu -->
                     <div class="account-dropdown" *ngIf="showAccountMenu && authService.isLoggedIn()" (clickOutside)="closeAccountMenu()">
-                        <a class="dropdown-item" routerLink="/profile">My Profile</a>
-                        <a class="dropdown-item" routerLink="/orders">My Orders</a>
-                        <a class="dropdown-item" routerLink="/wishlist">Wishlist</a>
+                        <a class="dropdown-item" (click)="navigateToProfile()">My Profile</a>
+                        <a class="dropdown-item" (click)="navigateToOrders()">My Orders</a>
+                        <a class="dropdown-item" (click)="navigateToWishlist()">Wishlist</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" (click)="logout()">Sign Out</a>
                     </div>
