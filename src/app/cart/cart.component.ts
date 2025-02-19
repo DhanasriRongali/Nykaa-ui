@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart-services/cart.service';
 import { Router, RouterModule } from '@angular/router';
+import { ToastService } from '../../services/toast-services/toast.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,6 +13,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
+  cartItemId: string | null = null;
   discount = 0;
   deliveryCharges = 0;
   isVisible = false;
@@ -39,10 +41,11 @@ export class CartComponent implements OnInit {
       type: 'flat'
     }
   ];
+  isLoading = false;
 
   constructor(
     public cartService: CartService,
-    // private router: Router
+    private toastService: ToastService
   ) {}
 
   ngOnInit() {
@@ -50,19 +53,97 @@ export class CartComponent implements OnInit {
   }
 
   loadCartItems() {
+    this.isLoading = true;
+    console.log('Loading cart items...');
+    
     this.cartService.getCartItems().subscribe({
-      next: (items) => {
-        this.cartItems = items;
-        this.cartService.updateCartCount(items.length);
+      next: (response) => {
+        console.log('Cart items response:', response);
+        this.cartItems = response;
+        
+        // Store the first cart item's ID if available
+        if (this.cartItems.length > 0) {
+          this.cartItemId = this.cartItems[0].id;
+          console.log('Stored cart item ID:', this.cartItemId);
+        }
+
+        // Log detailed cart information
+        const cartSummary = {
+          itemCount: this.cartItems.length,
+          items: this.cartItems.map(item => ({
+            cartItemId: item.id, // Log the cart item ID
+            productId: item.product._id,
+            name: item.product.name,
+            price: item.product.price,
+            quantity: item.quantity,
+            subtotal: item.product.price * item.quantity
+          })),
+          subtotal: this.getSubTotal(),
+          total: this.getTotal()
+        };
+        
+        console.log('Cart Summary:', cartSummary);
+        
+        this.cartService.updateCartCount();
+        this.isLoading = false;
       },
-      error: (error) => console.error('Error loading cart:', error)
+      error: (error) => {
+        console.error('Error loading cart:', error);
+        this.toastService.showError('Failed to load cart items');
+        this.isLoading = false;
+      }
     });
   }
 
-  removeItem(productId: string) {
-    this.cartService.removeFromCart(productId).subscribe({
-      next: () => this.loadCartItems(),
-      error: (error) => console.error('Error removing item:', error)
+  removeItem(cartItemId: string) {
+    console.log('Attempting to remove cart item:', cartItemId);
+    
+    if (!cartItemId) {
+      console.error('Invalid cart item ID');
+      this.toastService.showError('Cannot remove item: Invalid cart item ID');
+      return;
+    }
+
+    // Find the item to be removed for logging
+    const itemToRemove = this.cartItems.find(item => item.id === cartItemId);
+    console.log('Item to be removed:', itemToRemove);
+
+    this.cartService.removeFromCart(cartItemId).subscribe({
+      next: (response) => {
+        console.log('Remove item response:', response);
+        this.toastService.showSuccess('Item removed from cart');
+        this.loadCartItems(); // Refresh the cart
+      },
+      error: (error) => {
+        console.error('Error removing item:', error);
+        this.toastService.showError(error.message || 'Failed to remove item from cart');
+      }
+    });
+  }
+
+  updateQuantity(cartItemId: string, newQuantity: number) {
+    // If new quantity would be 0 or less, remove the item
+    if (newQuantity < 1) {
+      this.removeItem(cartItemId);
+      return;
+    }
+
+    console.log('Updating quantity:', {
+      cartItemId,
+      newQuantity,
+      currentItem: this.cartItems.find(item => item.id === cartItemId)
+    });
+
+    this.cartService.updateQuantity(cartItemId, newQuantity).subscribe({
+      next: (response) => {
+        console.log('Update quantity response:', response);
+        this.loadCartItems();
+        this.toastService.showSuccess('Quantity updated');
+      },
+      error: (error) => {
+        console.error('Error updating quantity:', error);
+        this.toastService.showError('Failed to update quantity');
+      }
     });
   }
 
@@ -73,15 +154,6 @@ export class CartComponent implements OnInit {
 
   getTotal(): number {
     return this.getSubTotal() - this.discount + this.deliveryCharges;
-  }
-
-  updateQuantity(item: any, change: number) {
-    const newQuantity = item.quantity + change;
-    if (newQuantity > 0) {
-      item.quantity = newQuantity;
-      // Update in backend
-      this.cartService.updateQuantity(item.product._id, newQuantity).subscribe();
-    }
   }
 
   toggleCoupons() {
@@ -119,6 +191,10 @@ export class CartComponent implements OnInit {
   }
 
   proceedToCheckout() {
+    if (this.cartItems.length === 0) {
+      this.toastService.showError('Your cart is empty');
+      return;
+    }
     this.closeCart();
   }
 } 
