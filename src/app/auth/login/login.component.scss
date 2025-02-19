@@ -1,0 +1,137 @@
+.auth-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.auth-modal {
+  background: white;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 8px;
+  padding: 24px;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: all 0.3s ease;
+
+  &.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.auth-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  h2 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--nykaa-pink);
+  }
+
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    
+    &:hover {
+      color: var(--nykaa-pink);
+    }
+  }
+}
+
+.auth-content {
+  .form-group {
+    margin-bottom: 16px;
+    position: relative;
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        border-color: var(--nykaa-pink);
+        outline: none;
+      }
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  .error-message {
+    color: #ff4444;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: var(--nykaa-pink);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+
+    &:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    &:hover:not(:disabled) {
+      background: darken(#fc2779, 5%);
+    }
+  }
+}
+
+.signup-link {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+
+  a {
+    color: var(--nykaa-pink);
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+} 
