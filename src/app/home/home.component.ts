@@ -27,17 +27,6 @@ import { InfluencerStoresComponent } from './influencer-stores/influencer-stores
     ImageGridComponent,
     InfluencerStoresComponent
   ],
-  template: `
-    <app-banner-and-offers-carousel></app-banner-and-offers-carousel>
-    <app-gift-store></app-gift-store>
-    <app-flash-sales></app-flash-sales>
-    <app-celebrate-love-carousel-cards></app-celebrate-love-carousel-cards>
-    <app-offer-cards></app-offer-cards>
-    <app-sang-these-beauty-steals></app-sang-these-beauty-steals>
-    <app-beauty-to-fall-for></app-beauty-to-fall-for>
-    <app-cupid-approved-offers></app-cupid-approved-offers>
-    <app-image-grid></app-image-grid>
-    <app-influencer-stores></app-influencer-stores>
-  `
+  templateUrl: './home.component.html',
 })
 export class HomeComponent { } 
