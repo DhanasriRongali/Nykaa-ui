@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FlashSalesService } from '../../../services/flashsale.services';
+import { FlashSalesService } from '../../../services/home-services/flashsale.service';
 import { FlashSaleImage } from '../../../types/flash-sale.types';
 import { CommonModule } from '@angular/common';
 

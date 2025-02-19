@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HardToResistDealsService } from '../../../services/hard-to-resist-deals.service';
-import { ProductService } from '../../../services/products.service';
+import { HardToResistDealsService } from '../../../services/home-services/hard-to-resist-deals.service';
+import { ProductService } from '../../../services/product-services/products.service';
 import { Router } from '@angular/router';
 
 @Component({

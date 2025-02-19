@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BeautyToFallForService } from '../../../services/beauty-to-fall-for.service';
+import { BeautyToFallForService } from '../../../services/home-services/beauty-to-fall-for.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

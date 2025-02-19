@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SangTheseBeautyStealsService } from '../../../services/sang-these-beauty-steals.service';
+import { SangTheseBeautyStealsService } from '../../../services/home-services/sang-these-beauty-steals.service';
 import { CommonModule } from '@angular/common';
 import { BeautyStealImage } from '../../../types/beauty-steal.types';
 

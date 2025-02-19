@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BannerOffersService, Url } from '../../../services/banner.services';
+import { BannerOffersService, Url } from '../../../services/home-services/banner.service';
 
 declare var bootstrap: any;
 

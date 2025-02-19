@@ -2,7 +2,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ImageService } from '../../../services/global-brands-to-love.services'; // Import the service
+import { ImageService } from '../../../services/home-services/global-brands-to-love.service'; // Import the service
 
 @Component({
   selector: 'app-image-grid',

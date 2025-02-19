@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CupidApprovedOffersService } from '../../../services/cupid-approved-offers.service';
+import { CupidApprovedOffersService } from '../../../services/home-services/cupid-approved-offers.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { FilterBoxComponent } from '../filter-box/filter-box.component';
 import { ProductGridComponent } from '../product-grid/product-grid.component';
-import { ProductService } from '../../../services/products.service';
+import { ProductService } from '../../../services/product-services/products.service';
 import { Product } from '../../../types/product.types';
 
 @Component({

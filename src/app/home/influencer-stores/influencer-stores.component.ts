@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Influencer } from '../../../types/influencer.types';
-import { InfluencerService } from '../../../services/influencer.service';
+import { InfluencerService } from '../../../services/home-services/influencer.service';
 
 @Component({
   selector: 'app-influencer-stores',

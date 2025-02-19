@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageService } from '../../../services/giftstore.services';
+import { ImageService } from '../../../services/home-services/giftstore.service';
 import { CommonModule } from '@angular/common';
 
 @Component({

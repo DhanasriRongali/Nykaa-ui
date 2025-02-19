@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { CategoryService } from '../../../services/categories.service';
+import { CategoryService } from '../../../services/header-services/categories.service';
 import { CommonModule } from '@angular/common';
-import { HeaderService } from '../../../services/header.service';
+import { HeaderService } from '../../../services/header-services/header.service';
 
 @Component({
   selector: 'app-category-menu',

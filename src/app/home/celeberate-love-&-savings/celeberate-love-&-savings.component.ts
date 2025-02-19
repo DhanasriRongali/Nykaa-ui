@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CelebrateLoveSavingsService } from '../../../services/celeberate-love-&-savings.service';
+import { CelebrateLoveSavingsService } from '../../../services/home-services/celeberate-love-&-savings.service';
 
 @Component({
   selector: 'app-celebrate-love-carousel-cards',
