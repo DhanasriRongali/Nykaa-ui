@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderService } from '../../services/header.service';
-import { CartService } from '../../services/cart.service';
+import { HeaderService } from '../../services/header-services/header.service';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavItems } from '../../types/header.types';
 import { CategoryMenuComponent } from '../nav/category/category.component';
 import { forkJoin } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
-import { CartService } from '../../services/cart.service';
+import { CartService } from '../../services/cart-services/cart.service';
 import { LoginComponent } from '../auth/login/login.component';
 import { SignupComponent } from '../auth/signup/signup.component';
 import { CartComponent } from '../cart/cart.component';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth-services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -39,7 +39,6 @@ export class HeaderComponent implements OnInit {
   isSignupVisible$ = this.cartService.isSignupModalVisible();
   isCartVisible$ = this.cartService.isCartVisible();
   isLoggedIn$ = this.authService.isLoggedIn();
-  showAccountMenu = false;
 
   constructor(
     private headerService: HeaderService,
