@@ -1,0 +1,23 @@
+<div className="app">
+    <div className="container">
+        <div className="content">
+            <div class="product-feature" *ngIf="product">
+                <app-overview [name]="product.name || ''" [images]="product.images || []" [price]="product.price"
+                    [badge]="product.badge" [offer]="product.custom_props?.offer">
+                </app-overview>
+
+                <!-- Details section: description, stock, brand, categories, etc. -->
+                <app-details [description]="product.description" [stock]="product.stock"
+                    [brandId]="product.brand_id || ''" [categoryId]="product.category_id || ''"
+                    [subCategoryId]="product.sub_category_id || ''"
+                    [childSubCategoryId]="product.child_sub_category_id || ''" [originalPrice]="product.original_price"
+                    [createdAt]="product.created_at || ''">
+                </app-details>
+
+                <!-- Feedback section: rating details, reviews, etc. -->
+                <app-feedback [rating]="product.rating">
+                </app-feedback>
+            </div>
+        </div>
+    </div>
+</div>

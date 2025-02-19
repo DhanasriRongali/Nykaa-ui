@@ -1,0 +1,32 @@
+<div class="details">
+    <h3>Product Details</h3>
+    
+    <div class="details-grid">
+      <div class="detail-item">
+        <span class="detail-label">Brand</span>
+        <span class="detail-value">{{ brandId }}</span>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-label">Category</span>
+        <span class="detail-value">{{ categoryId }}</span>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-label">Stock Status</span>
+        <span class="detail-value stock-status" [class.out-of-stock]="!stock">
+          {{ stock ? 'In Stock' : 'Out of Stock' }}
+        </span>
+      </div>
+      
+      <div class="detail-item" *ngIf="originalPrice">
+        <span class="detail-label">Original Price</span>
+        <span class="detail-value">₹{{ originalPrice.toFixed(2) }}</span>
+      </div>
+    </div>
+
+    <div class="description" *ngIf="description">
+      {{ description }}
+    </div>
+</div>
+  

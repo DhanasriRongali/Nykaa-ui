@@ -148,9 +148,9 @@ export class HardToResistDealsService {
     {
       imageUrl: 'https://images-static.nykaa.com/uploads/0f6cee8a-5575-407a-823e-0da35d312c53.jpg?tr=cm-pad_resize,w-300',
       caption: 'Up To 35% Off',
-      navLink: 'products/ef05c4cb-5ce7-44c2-838b-9d09edfe1e69',
+      navLink: 'products/73c2dd90-0bc0-4335-bc66-0dedd3f5d9eb',
       offerText: 'Free Serum On ₹499+',
-      brandId: 'ef05c4cb-5ce7-44c2-838b-9d09edfe1e69'
+      brandId: '73c2dd90-0bc0-4335-bc66-0dedd3f5d9eb'
     },
     {
       imageUrl: 'https://images-static.nykaa.com/uploads/6e764c73-d5bb-481b-a145-26fcd7fc98c1.jpg?tr=cm-pad_resize,w-300',

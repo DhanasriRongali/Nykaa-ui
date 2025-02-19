@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -13,6 +14,8 @@ export class ProductCardComponent {
   hoverImage: string | undefined;
   isHovered = false;
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
     this.hoverImage = this.product.images[0]; // Default image
   }
@@ -25,5 +28,9 @@ export class ProductCardComponent {
 
   onMouseLeave() {
     this.hoverImage = this.product.images[0]; // Reset on leave
+  }
+
+  navigateToProduct() {
+    this.router.navigate(['/product', this.product.id]);
   }
 }

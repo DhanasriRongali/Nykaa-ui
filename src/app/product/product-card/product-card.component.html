@@ -1,4 +1,4 @@
-<div class="product-card" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+<div class="product-card" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false" (click)="navigateToProduct()">
   <!-- Always Visible Badge -->
   <div *ngIf="product.badge" class="badge">{{ product.badge }}</div>
 
