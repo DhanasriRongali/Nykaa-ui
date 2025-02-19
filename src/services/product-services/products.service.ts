@@ -129,4 +129,8 @@ export class ProductService {
       })
     );
   }
+
+  formatPrice(price: number): string {
+    return `₹${price.toFixed(2)}`;
+  }
 }
