@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
-import { CartService } from '../../../services/cart.service';
+import { AuthService } from '../../../services/auth-services/auth.service';
+import { CartService } from '../../../services/cart-services/cart.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
