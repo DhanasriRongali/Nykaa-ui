@@ -50,7 +50,8 @@
         <div class="container header-content">
             <!-- Logo -->
             <div class="logo">
-                <h1>NYKAA</h1>
+                <a href="#"><img class="logo-img" src="https://logos-world.net/wp-content/uploads/2023/08/Pink-Pnk-Logo.png" alt="logo"></a>
+                <!-- <h1>NYKAA</h1> -->
             </div>
 
             <!-- Main Header Navigation -->
@@ -89,7 +90,7 @@
                 </div>
                 <button class="cart-btn" (click)="toggleCart()">
                     <span class="icon">🛒</span>
-                    <span class="cart-count">0</span>
+                    <span class="cart-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
                     <span class="text">Cart</span>
                 </button>
             </div>

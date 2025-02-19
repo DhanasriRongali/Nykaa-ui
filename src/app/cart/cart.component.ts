@@ -142,7 +142,7 @@ import { Router, RouterModule } from '@angular/router';
         font-size: 24px;
         cursor: pointer;
         color: #666;
-
+        
         &:hover {
           color: var(--nykaa-pink);
         }

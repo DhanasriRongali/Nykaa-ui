@@ -1,28 +1,56 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin, map } from 'rxjs';
 import { NavItems } from '../types/header.types';
 
+interface CategoryData {
+  id: string;
+  name: string;
+  sub_category?: any[];
+}
+
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class HeaderService {
-    private apiUrl = 'http://192.168.1.140:3000/api';
+  private apiUrl = 'http://192.168.1.150:8000/api';
+  private categoryData: { [key: string]: CategoryData } = {};
 
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    getMainNavItems(): NavItems[] {
-        console.log('getMainNavItems function called...');
-        return [
-            { "nav-name": "Brands", "nav-link": "#" },
-            { "nav-name": "Luxe", "nav-link": "#" },
-            { "nav-name": "Nykaa Fashion", "nav-link": "#" },
-            { "nav-name": "Beauty Fashion", "nav-link": "#" }
-        ];
-    }
+  getMainNavItems(): NavItems[] {
+    return [
+      { "nav-name": "Categories", "nav-link": "#" },
+      { "nav-name": "Brands", "nav-link": "#" },
+      { "nav-name": "Luxe", "nav-link": "#" },
+      { "nav-name": "Nykaa Fashion", "nav-link": "#" },
+      { "nav-name": "Beauty Fashion", "nav-link": "#" }
+    ];
+  }
 
-    getCategoryItems(): Observable<any[]> {
-        console.log('getCategoryItems function called...');
-        return this.http.get<any[]>(`${this.apiUrl}/categories`);
-    }
+  loadAllCategoryData(): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}/categories`).pipe(
+      map(categories => {
+        const categoryRequests = categories.map(category =>
+          this.http.get<CategoryData>(`${this.apiUrl}/categories/${category.id}`)
+        );
+        return {
+          categories,
+          detailRequests: forkJoin(categoryRequests)
+        };
+      })
+    );
+  }
+
+  getCategoryItems(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/categories`);
+  }
+
+  getCategoryById(categoryId: string): CategoryData | null {
+    return this.categoryData[categoryId] || null;
+  }
+
+  setCategoryData(categoryId: string, data: CategoryData) {
+    this.categoryData[categoryId] = data;
+  }
 }
