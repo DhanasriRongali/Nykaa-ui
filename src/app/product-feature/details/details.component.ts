@@ -11,7 +11,7 @@ import { Brand, Category } from '../../../types/product.types';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent {
-  @Input() description?: string | HTMLPreElement;
+  @Input() description?: string | '';
   @Input() stock?: number;
   @Input() brand: Brand = { id: '', name: '' };
   @Input() category: Category = { id: '', name: '' };
@@ -21,13 +21,4 @@ export class DetailsComponent {
   @Input() createdAt: string = '';
 
   constructor(private sanitizer: DomSanitizer) {}
-
-  get sanitizedDescription(): SafeHtml {
-    if (typeof this.description === 'string') {
-      return this.sanitizer.bypassSecurityTrustHtml(this.description);
-    } else if (this.description instanceof HTMLPreElement) {
-      return this.sanitizer.bypassSecurityTrustHtml(this.description.innerHTML);
-    }
-    return '';
-  }
 }
