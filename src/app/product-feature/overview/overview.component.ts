@@ -10,7 +10,8 @@ import { ToastService } from '../../../services/toast-services/toast.service';
 @Component({
   selector: 'app-overview',
   standalone: true,
-  imports: [CommonModule, AuthService, CartService, ToastService],
+  imports: [CommonModule],
+  providers: [AuthService, CartService, ToastService],
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css']
 })
@@ -25,6 +26,7 @@ export class OverviewComponent implements OnInit {
   @Input() price?: number;
   @Input() badge?: string;
   @Input() offer?: Offer;
+  @Input() id!: string;
   @Input() product!: Product;
 
   selectedImage: string = '';
@@ -50,14 +52,15 @@ export class OverviewComponent implements OnInit {
 
   addToCart(event: Event) {
     event.stopPropagation();
-    console.log('Add to Cart clicked');
+    console.log('Add to Cart clicked', event);
     if (!this.authService.isLoggedIn()) {
       this.toastService.showError('Please login to add items to cart');
       return;
     }
+    console.log(this);
 
     const cartItem = {
-      product_id: this.product.id,
+      product_id: this.id,
       quantity: 1
     };
 
