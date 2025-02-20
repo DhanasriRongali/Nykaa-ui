@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CartService } from '../../../services/cart-services/cart.service';
 import { AuthService } from '../../../services/auth-services/auth.service';
 import { ToastService } from '../../../services/toast-services/toast.service';
+import { Product } from '../../../types/product.types';
 
 @Component({
   standalone: true,
@@ -13,7 +14,7 @@ import { ToastService } from '../../../services/toast-services/toast.service';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent {
-  @Input() product: any;
+  @Input() product!: Product;
   hoverImage: string | undefined;
   isHovered = false;
 
@@ -28,7 +29,9 @@ export class ProductCardComponent {
     this.hoverImage = this.product.images[0]; // Default image
   }
 
-  addToCart() {
+  addToCart(event: Event) {
+    event.stopPropagation();
+    console.log('Add to Cart clicked');
     if (!this.authService.isLoggedIn()) {
       this.toastService.showError('Please login to add items to cart');
       return;
@@ -39,19 +42,16 @@ export class ProductCardComponent {
       quantity: 1
     };
 
-    console.log('Adding to cart:', {
-      product: this.product,
-      cartItem: cartItem
-    });
+    console.log('Cart Item:', cartItem);
 
     this.cartService.addToCart(cartItem).subscribe({
       next: (response) => {
-        console.log('Add to cart response:', response);
+        console.log('Add to Cart Response:', response);
         this.toastService.showSuccess('Product added to cart successfully');
         this.cartService.updateCartCount();
       },
       error: (error) => {
-        console.error('Add to cart error:', error);
+        console.error('Add to Cart Error:', error);
         this.toastService.showError(error.message || 'Failed to add product to cart');
       }
     });

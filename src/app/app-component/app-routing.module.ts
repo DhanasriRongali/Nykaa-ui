@@ -1,21 +1,32 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
 import { ProductPageComponent } from '../product/product-page/product-page.component';
+import { ProductFeatureComponent } from '../product-feature/product-feature.component';
 import { LoginComponent } from '../auth/login/login.component';
 import { SignupComponent } from '../auth/signup/signup.component';
 import { CartComponent } from '../cart/cart.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ProductFeatureComponent } from '../product-feature/product-feature.component';
+import { Component } from '@angular/core';
+import { ProfileComponent } from '../profile/profile.component';
+import { WishlistComponent } from '../wishlist/wishlist.component';
+import { OrdersComponent } from '../orders/orders.component';
+
+@Component({
+  selector: 'app-test',
+  template: '<h1>Test</h1>'
+})
+export class TestComponent {}
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'home', component: HomeComponent },
+  {path: 'test', component: TestComponent},
   { path: 'products/:brandId', component: ProductPageComponent },
   { path: 'product/:id', component: ProductFeatureComponent },
-  // { path: 'login', component: LoginComponent },
-  // { path: 'signup', component: SignupComponent },
-  // { path: 'cart', component: CartComponent },
+  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'profile', component: ProfileComponent},
+  {path: 'wishlist', component: WishlistComponent},
+  { path: 'orders', component: OrdersComponent},
   { path: '**', redirectTo: '' } // Redirect unknown paths to home
 ];
 

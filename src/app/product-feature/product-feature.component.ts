@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../types/product.types';
 import { ProductService } from '../../services/product-services/products.service';
 import { OverviewComponent } from './overview/overview.component';
@@ -21,7 +21,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductFeatureComponent implements OnInit {
   product: Product | null = null;
-  
+
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute

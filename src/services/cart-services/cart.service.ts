@@ -32,7 +32,7 @@ export class CartService {
   }
 
   addToCart(item: CartItem): Observable<any> {
-    return this.http.post(`${this.apiUrl}/cart/add`, item, { headers: this.getHeaders() });
+    return this.http.post(`${this.apiUrl}/items`, item, { headers: this.getHeaders() });
   }
 
   getCartItems(): Observable<any[]> {

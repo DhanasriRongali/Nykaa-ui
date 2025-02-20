@@ -1,43 +1,43 @@
-<div class="product-card" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false" (click)="navigateToProduct()">
+<div class="product-card" (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
   <!-- Always Visible Badge -->
   <div *ngIf="product.badge" class="badge">{{ product.badge }}</div>
 
   <!-- Product Image -->
-  <div class="image-container">
+  <div class="image-container" (click)="navigateToProduct()">
     <img [src]="hoverImage" [alt]="product.name">
   </div>
 
   <!-- Product Details -->
-  <div class="product-details">
+  <div class="product-details" (click)="navigateToProduct()">
     <h3 class="product-name">{{ product.name }}</h3>
 
     <div class="price-ratings-container">
       <!-- Price -->
       <div class="price">
         <span class="discounted-price">₹{{ product.price.toFixed(2) }}</span>
-        <span *ngIf="product.price < product.original_price" class="original-price">
-          ₹{{ product.original_price.toFixed(2) }}
+        <span *ngIf="product?.price < product?.original_price" class="original-price">
+          ₹{{ product?.original_price?.toFixed(2) }}
         </span>
       </div>
 
       <!-- Ratings -->
-      <div class="ratings" *ngIf="product.ratings">
-        ⭐ {{ product?.ratings.average_rating }} ({{ product?.ratings.review_count }} Reviews)
+      <div class="ratings" *ngIf="product.rating">
+        ⭐ {{ product?.rating?.average_rating }} ({{ product?.rating?.count }} Reviews)
       </div>
     </div>
 
     <!-- Offer -->
     <div *ngIf="product.custom_props?.offer" class="offer">
-      <img *ngIf="product?.custom_props.offer.offer_image" 
-           [src]="product?.custom_props.offer.offer_image" 
-           [alt]="product?.custom_props.offer.offer_name">
-      <span>{{ product?.custom_props.offer.offer_name }}</span>
+      <img *ngIf="product?.custom_props?.offer?.image" 
+           [src]="product?.custom_props?.offer?.image" 
+           [alt]="product?.custom_props?.offer?.name">
+      <span>{{ product?.custom_props?.offer?.name }}</span>
     </div>
   </div>
 
   <!-- Add to Bag & Wishlist -->
   <div class="hover-buttons" [ngClass]="{ 'show': isHovered }">
     <button class="wishlist-btn">♡</button>
-    <button class="add-to-bag-btn" (click)="addToCart()">Add to Bag</button>
+    <button class="add-to-bag-btn" (click)="addToCart($event)">Add to Bag</button>
   </div>
 </div>

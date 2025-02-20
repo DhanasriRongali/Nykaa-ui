@@ -30,15 +30,15 @@
         </div>
         
         <div class="offer-banner" *ngIf="offer">
-          <img *ngIf="offer?.image" 
-               [src]="offer?.image" 
-               [alt]="offer?.name || ''">
-          <span>{{ offer?.name }}</span>
+          <img *ngIf="offer.image" 
+               [src]="offer.image" 
+               [alt]="offer.name || ''">
+          <span>{{ offer.name }}</span>
         </div>
       </div>
 
       <div class="action-buttons">
-        <button class="add-to-bag">Add to Bag</button>
+        <button class="add-to-bag"  (click)="addToCart($event)">Add to Bag</button>
         <button class="add-to-wishlist">Add to Wishlist</button>
       </div>
     </div>

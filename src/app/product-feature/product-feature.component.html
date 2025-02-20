@@ -3,7 +3,7 @@
         <div className="content">
             <div class="product-feature" *ngIf="product">
                 <app-overview [name]="product.name || ''" [images]="product.images || []" [price]="product.price"
-                    [badge]="product.badge" [offer]="product.custom_props?.offer">
+                    [badge]="product.badge" [offer]="product.custom_props.offer">
                 </app-overview>
 
                 <!-- Details section: description, stock, brand, categories, etc. -->
