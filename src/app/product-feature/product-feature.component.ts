@@ -32,6 +32,7 @@ export class ProductFeatureComponent implements OnInit {
       const productId = params['id'];
       this.productService.getProductById(productId).subscribe((data) => {
         this.product = data;
+        console.log(this.product);
       });
     });
   }

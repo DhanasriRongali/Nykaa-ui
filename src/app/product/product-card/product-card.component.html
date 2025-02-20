@@ -15,23 +15,23 @@
       <!-- Price -->
       <div class="price">
         <span class="discounted-price">₹{{ product.price.toFixed(2) }}</span>
-        <span *ngIf="product?.price < product?.original_price" class="original-price">
-          ₹{{ product?.original_price?.toFixed(2) }}
+        <span *ngIf="product.original_price && product.price < product.original_price" class="original-price">
+          ₹{{ product.original_price.toFixed(2) }}
         </span>
       </div>
 
       <!-- Ratings -->
       <div class="ratings" *ngIf="product.rating">
-        ⭐ {{ product?.rating?.average_rating }} ({{ product?.rating?.count }} Reviews)
+        ⭐ {{ product.rating.average_rating }} ({{ product.rating.count }} Reviews)
       </div>
     </div>
 
     <!-- Offer -->
     <div *ngIf="product.custom_props?.offer" class="offer">
-      <img *ngIf="product?.custom_props?.offer?.image" 
-           [src]="product?.custom_props?.offer?.image" 
-           [alt]="product?.custom_props?.offer?.name">
-      <span>{{ product?.custom_props?.offer?.name }}</span>
+      <img *ngIf="product.custom_props.offer?.image" 
+           [src]="product.custom_props.offer?.image" 
+           [alt]="product.custom_props.offer?.name || ''">
+      <span>{{ product.custom_props.offer?.name }}</span>
     </div>
   </div>
 
