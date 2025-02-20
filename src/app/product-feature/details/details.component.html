@@ -25,8 +25,6 @@
       </div>
     </div>
 
-    <div class="description" *ngIf="description">
-      {{ description }}
-    </div>
+    <div class="description" [innerHTML]="sanitizedDescription"></div>
 </div>
   
