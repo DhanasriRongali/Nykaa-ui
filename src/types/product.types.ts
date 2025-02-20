@@ -25,6 +25,16 @@ export type CustomProps = {
     offer?: Offer;
 };
 
+export type Category = {
+    id: string;
+    name?: string;
+};
+
+export type Brand = {
+    id: string;
+    name?: string;
+};
+
 export type Product = {
     id: string;
     name: string;
@@ -32,10 +42,10 @@ export type Product = {
     original_price?: number;
     price: number;
     stock?: number;
-    category_id?: string;
+    category: Category;
+    brand: Brand;
     sub_category_id?: string;
     child_sub_category_id?: string;
-    brand_id?: string;
     images: string[];
     rating: Ratings;
     custom_props: CustomProps; 

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Brand, Category } from '../../../types/product.types';
 
 @Component({
   selector: 'app-details',
@@ -12,8 +13,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 export class DetailsComponent {
   @Input() description?: string | HTMLPreElement;
   @Input() stock?: number;
-  @Input() brandId: string = '';
-  @Input() categoryId: string = '';
+  @Input() brand: Brand = { id: '', name: '' };
+  @Input() category: Category = { id: '', name: '' };
   @Input() subCategoryId: string = '';
   @Input() childSubCategoryId: string = '';
   @Input() originalPrice?: number;

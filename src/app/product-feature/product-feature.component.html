@@ -8,7 +8,7 @@
 
                 <!-- Details section: description, stock, brand, categories, etc. -->
                 <app-details [description]="product.description" [stock]="product.stock"
-                    [brandId]="product.brand_id || ''" [categoryId]="product.category_id || ''"
+                    [brand]="product.brand || {}" [category]="product.category || {}"
                     [subCategoryId]="product.sub_category_id || ''"
                     [childSubCategoryId]="product.child_sub_category_id || ''" [originalPrice]="product.original_price"
                     [createdAt]="product.created_at || ''">
