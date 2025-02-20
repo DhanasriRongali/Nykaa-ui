@@ -35,8 +35,9 @@ export class CategoryMenuComponent implements OnInit, OnChanges {
     const categoryData = this.headerService.getCategoryById(this.categoryId);
     if (categoryData) {
       this.categories = categoryData;
-      this.columnCount = Math.ceil(this.categories.sub_category?.length / this.categoriesPerColumn);
-      this.columnArray = Array(this.columnCount).fill(0).map((_, i) => i);
+      const subCategoryLength = this.categories.sub_category?.length || 0;
+      this.columnCount = Math.max(1, Math.ceil(subCategoryLength / this.categoriesPerColumn));
+      this.columnArray = Array.from({ length: this.columnCount }, (_, i) => i);
     }
   }
 
