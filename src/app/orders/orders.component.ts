@@ -6,11 +6,12 @@ import { CartService } from '../../services/cart-services/cart.service';
 import { AuthService } from '../../services/auth-services/auth.service'; // Import the AuthService
 import { Order } from '../../types/order.types'; // Import the Order interface
 import { OrderDetailsComponent } from '../order-details/order-details.component'; // Import the OrderDetailsComponent
+import { UserSideMenuComponent } from '../user-side-menu/user-side-menu.component';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [CommonModule, RouterModule, OrderDetailsComponent],
+  imports: [CommonModule, RouterModule, OrderDetailsComponent, UserSideMenuComponent],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
