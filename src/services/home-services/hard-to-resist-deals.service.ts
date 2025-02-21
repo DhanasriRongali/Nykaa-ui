@@ -122,8 +122,8 @@ export class HardToResistDealsService {
       imageUrl: 'https://images-static.nykaa.com/uploads/063ae8aa-e43f-4bb6-8bb8-2423db6a1837.jpg?tr=cm-pad_resize,w-300',
       caption: 'Flat 25% Off*',
       offerText: 'Free Mini On ₹2000',
-      brandId: 'f57a8ce2-1c28-49c3-85c9-9ef411517224',
-      navLink: 'products/f57a8ce2-1c28-49c3-85c9-9ef411517224',
+      brandId: '0a76024c-a5c5-43cd-8868-f8eb82381630',
+      navLink: 'products/0a76024c-a5c5-43cd-8868-f8eb82381630',
     },
     {
       imageUrl: 'https://images-static.nykaa.com/uploads/79d02e80-52de-4f94-a3c2-a93fe9b3d3cc.jpg?tr=cm-pad_resize,w-300',
