@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth-services/auth.service';
 import { CartService } from '../../services/cart-services/cart.service';
-
+import { UserSideMenuComponent } from '../user-side-menu/user-side-menu.component';
 interface WishlistItem {
   productId: string;
   name: string;
@@ -16,7 +16,7 @@ interface WishlistItem {
 @Component({
   selector: 'app-wishlist',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, UserSideMenuComponent],
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.css']
 })
