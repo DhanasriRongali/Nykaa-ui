@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Brand, Category } from '../../../types/product.types';
 
 @Component({
   selector: 'app-details',
@@ -9,12 +11,14 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent {
-  @Input() description?: string;
+  @Input() description?: string | '';
   @Input() stock?: number;
-  @Input() brandId?: string;
-  @Input() categoryId?: string;
-  @Input() subCategoryId?: string;
-  @Input() childSubCategoryId?: string;
+  @Input() brand: Brand = { id: '', name: '' };
+  @Input() category: Category = { id: '', name: '' };
+  @Input() subCategoryId: string = '';
+  @Input() childSubCategoryId: string = '';
   @Input() originalPrice?: number;
-  @Input() createdAt!: string;
+  @Input() createdAt: string = '';
+
+  constructor(private sanitizer: DomSanitizer) {}
 }

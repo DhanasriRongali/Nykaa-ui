@@ -27,7 +27,15 @@ const dummyMakeupProducts: Product[] = [
     },
     badge: "Bestseller",
     created_at: "2023-01-15T10:00:00Z",
-    updated_at: "2024-03-20T08:30:00Z"
+    updated_at: "2024-03-20T08:30:00Z",
+    category: {
+      id: '',
+      name: undefined
+    },
+    brand: {
+      id: '',
+      name: undefined
+    }
   },
   {
     id: "mk-002",
@@ -43,7 +51,15 @@ const dummyMakeupProducts: Product[] = [
       average_rating: 4.7
     },
     custom_props: {},
-    created_at: "2023-03-20T09:00:00Z"
+    created_at: "2023-03-20T09:00:00Z",
+    category: {
+      id: '',
+      name: undefined
+    },
+    brand: {
+      id: '',
+      name: undefined
+    }
   },
   {
     id: "mk-003",
@@ -65,7 +81,15 @@ const dummyMakeupProducts: Product[] = [
     },
     badge: "New",
     created_at: "2024-01-10T11:30:00Z",
-    updated_at: "2024-03-15T14:20:00Z"
+    updated_at: "2024-03-15T14:20:00Z",
+    category: {
+      id: '',
+      name: undefined
+    },
+    brand: {
+      id: '',
+      name: undefined
+    }
   },
   {
     id: "mk-004",
@@ -82,7 +106,15 @@ const dummyMakeupProducts: Product[] = [
     },
     custom_props: {},
     created_at: "2023-06-05T08:45:00Z",
-    updated_at: "2024-02-28T16:15:00Z"
+    updated_at: "2024-02-28T16:15:00Z",
+    category: {
+      id: '',
+      name: undefined
+    },
+    brand: {
+      id: '',
+      name: undefined
+    }
   },
   {
     id: "mk-005",
@@ -104,7 +136,15 @@ const dummyMakeupProducts: Product[] = [
     },
     badge: "Trending",
     created_at: "2023-09-12T13:20:00Z",
-    updated_at: "2024-03-18T09:45:00Z"
+    updated_at: "2024-03-18T09:45:00Z",
+    category: {
+      id: '',
+      name: undefined
+    },
+    brand: {
+      id: '',
+      name: undefined
+    }
   }
 ];
 
