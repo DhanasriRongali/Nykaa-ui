@@ -125,7 +125,10 @@ export class AuthService {
     const headers = this.getHeaders();
     return this.http.get<any>(`${this.apiUrl}/orders`, { headers });
   }
-
+  getAddresses(): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get<any>(`${this.apiUrl}/addresses`, { headers });
+  }
   getWishlist(): Observable<any> {
     const headers = this.getHeaders();
     return this.http.get<any>(`${this.apiUrl}/wishlist`, { headers });
