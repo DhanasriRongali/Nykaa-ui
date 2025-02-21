@@ -1,37 +1,9 @@
 <div class="profile-layout">
-  <!-- Side Menu -->
-  <div class="side-menu">
-    <div class="user-info">
-      <div class="avatar">
-        <span>{{ userProfile?.name?.charAt(0) || 'U' }}</span>
-      </div>
-      <h3>{{ userProfile?.name || 'User' }}</h3>
-      <p>{{ userProfile?.email }}</p>
-    </div>
-    
-    <nav class="menu-items">
-      <a class="menu-item active" routerLink="/profile">
-        <i class="fas fa-user"></i>
-        My Profile
-      </a>
-      <a class="menu-item" routerLink="/orders">
-        <i class="fas fa-box"></i>
-        My Orders
-      </a>
-      <a class="menu-item" routerLink="/wishlist">
-        <i class="fas fa-heart"></i>
-        Wishlist
-      </a>
-      <a class="menu-item" routerLink="/addresses">
-        <i class="fas fa-map-marker-alt"></i>
-        Addresses
-      </a>
-      <button class="menu-item logout" (click)="logout()">
-        <i class="fas fa-sign-out-alt"></i>
-        Logout
-      </button>
-    </nav>
-  </div>
+  <app-user-side-menu 
+    activeRoute="profile"
+    [userName]="userProfile?.name"
+    [userEmail]="userProfile?.email">
+  </app-user-side-menu>
 
   <!-- Main Content -->
   <div class="main-content">
@@ -103,7 +75,7 @@
           </form>
         </div>
 
-        <div class="profile-section">
+        <!-- <div class="profile-section">
           <h3>Addresses</h3>
           <div *ngIf="userProfile.addresses?.length; else noAddress">
             <div class="address-card" *ngFor="let address of userProfile.addresses">
@@ -115,7 +87,7 @@
           <ng-template #noAddress>
             <p class="no-data">No addresses added yet</p>
           </ng-template>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

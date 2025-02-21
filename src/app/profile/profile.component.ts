@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth-services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserSideMenuComponent } from '../user-side-menu/user-side-menu.component';
 
 interface UserProfile {
   name: string;
@@ -31,7 +32,7 @@ interface UpdateData {
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, UserSideMenuComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
