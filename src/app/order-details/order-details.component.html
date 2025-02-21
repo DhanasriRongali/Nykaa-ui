@@ -1,0 +1,50 @@
+<div class="order-details">
+  <!-- Back Button -->
+  <button (click)="goBack()" class="back-button">←</button>
+
+  <!-- Order Header -->
+  <div class="order-header">
+    <div class="order-info">
+      <span class="order-id">Order #{{ order?.orderId }}</span>
+      <span class="order-date">{{ order?.date }}</span>
+    </div>
+    <span class="order-status status-{{ order?.status?.toLowerCase() }}">
+        {{ order?.status }}
+      </span>
+      
+  </div>
+
+  <!-- Order Items -->
+  <div class="order-items">
+    <div *ngFor="let item of order?.items" class="order-item">
+      <img [src]="item.image" [alt]="item.name" />
+      <div class="item-details">
+        <h4>{{ item.name }}</h4>
+        <span class="quantity">Qty: {{ item.quantity }}</span>
+        <span class="price">₹{{ item.price }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shipping Info -->
+  <div class="order-section">
+    <h3>Shipping Details</h3>
+    <p>{{ order?.shippingAddress?.street }}</p>
+    <p>{{ order?.shippingAddress?.city }}, {{ order?.shippingAddress?.state }} - {{ order?.shippingAddress?.pincode }}</p>
+  </div>
+
+  <!-- Order Summary -->
+  <div class="order-footer">
+    <div class="total">Total: <span class="amount">₹{{ order?.total }}</span></div>
+  </div>
+
+  <!-- Actions -->
+  <div class="order-actions">
+    <button class="track-btn">
+      <i class="fas fa-truck"></i> Track Order
+    </button>
+    <button class="track-btn">
+      <i class="fas fa-file-invoice"></i> Download Invoice
+    </button>
+  </div>
+</div>

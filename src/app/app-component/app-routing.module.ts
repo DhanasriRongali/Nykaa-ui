@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { ProfileComponent } from '../profile/profile.component';
 import { WishlistComponent } from '../wishlist/wishlist.component';
 import { OrdersComponent } from '../orders/orders.component';
+import { OrderDetailsComponent } from '../order-details/order-details.component'; // Import the OrderDetailsComponent
 
 @Component({
   selector: 'app-test',
@@ -19,14 +20,14 @@ import { OrdersComponent } from '../orders/orders.component';
 export class TestComponent {}
 
 export const routes: Routes = [
-  {path: 'test', component: TestComponent},
   { path: 'products/:brandId', component: ProductPageComponent },
   { path: 'product/:id', component: ProductFeatureComponent },
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'profile', component: ProfileComponent},
-  {path: 'wishlist', component: WishlistComponent},
-  { path: 'orders', component: OrdersComponent},
+    { path: 'profile', component: ProfileComponent },
+  { path: 'wishlist', component: WishlistComponent },
+  { path: 'orders', component: OrdersComponent },
+  { path: 'order-details/:orderId', component: OrderDetailsComponent }, // Add the route for OrderDetailsComponent
   { path: '**', redirectTo: '' } // Redirect unknown paths to home
 ];
 
