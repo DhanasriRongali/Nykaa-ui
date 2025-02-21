@@ -25,7 +25,7 @@
         <i class="fas fa-map-marker-alt"></i>
         Addresses
       </a>
-      <button class="menu-item logout" (click)="authService.logout()">
+      <button class="menu-item logout" (click)="logout()">
         <i class="fas fa-sign-out-alt"></i>
         Logout
       </button>
@@ -50,7 +50,7 @@
         </div>
 
         <div *ngIf="!isLoading && orders.length > 0" class="orders-list">
-          <div *ngFor="let order of orders" class="order-card">
+          <div *ngFor="let order of orders" class="order-card" (click)="selectOrder(order.orderId)">
             <div class="order-header">
               <div class="order-info">
                 <span class="order-id">Order #{{ order.orderId }}</span>
@@ -63,7 +63,6 @@
 
             <div class="order-items">
               <div *ngFor="let item of order.items" class="order-item">
-                <img [src]="item.image" [alt]="item.name">
                 <div class="item-details">
                   <h4>{{ item.name }}</h4>
                   <p class="quantity">Qty: {{ item.quantity }}</p>
@@ -77,11 +76,10 @@
                 <span>Total:</span>
                 <span class="amount">₹{{ order.total }}</span>
               </div>
-              <button class="track-btn">Track Order</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div> 
+</div>

@@ -1,45 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { AuthService } from '../../services/auth-services/auth.service';
+import { RouterModule, Router } from '@angular/router';
+import { OrderService } from '../../services/order-services/order.service';
 import { CartService } from '../../services/cart-services/cart.service';
-
-interface OrderItem {
-  productId: string;
-  name: string;
-  price: number;
-  quantity: number;
-  image: string;
-}
-
-interface Order {
-  orderId: string;
-  date: string;
-  status: string;
-  total: number;
-  items: OrderItem[];
-  shippingAddress: {
-    street: string;
-    city: string;
-    state: string;
-    pincode: string;
-  };
-}
+import { AuthService } from '../../services/auth-services/auth.service'; // Import the AuthService
+import { Order } from '../../types/order.types'; // Import the Order interface
+import { OrderDetailsComponent } from '../order-details/order-details.component'; // Import the OrderDetailsComponent
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, OrderDetailsComponent],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
   orders: Order[] = [];
+  selectedOrder!: Order;
   isLoading = true;
 
   constructor(
-    public authService: AuthService,
-    private cartService: CartService
+    private orderService: OrderService,
+    private router: Router,
+    private cartService: CartService,
+    public authService: AuthService // Make the AuthService public
   ) {}
 
   ngOnInit() {
@@ -51,9 +35,10 @@ export class OrdersComponent implements OnInit {
 
   loadOrders() {
     this.isLoading = true;
-    this.authService.getOrders().subscribe({
+    this.orderService.getOrders().subscribe({
       next: (orders: Order[]) => {
         this.orders = orders;
+        console.log('Loaded Orders:', this.orders); // Console log the orders
         this.isLoading = false;
       },
       error: (error) => {
@@ -77,4 +62,29 @@ export class OrdersComponent implements OnInit {
         return '';
     }
   }
-} 
+
+  logout() {
+    this.authService.logout();
+  }
+
+  // constructor(private orderService: OrderService, private router: Router) {}
+
+selectOrder(orderId: string) {
+  this.isLoading = true;
+  this.orderService.getOrderById(orderId).subscribe({
+    next: (order: Order) => {
+      this.selectedOrder = order;
+      console.log('Selected Order:', this.selectedOrder); // Debugging log
+      this.isLoading = false;
+      
+      // ✅ Navigate to OrderDetailsComponent with orderId
+      this.router.navigate(['/order-details', orderId]);
+    },
+    error: (error) => {
+      console.error('Error loading order:', error);
+      this.isLoading = false;
+    }
+  });
+}
+
+}
