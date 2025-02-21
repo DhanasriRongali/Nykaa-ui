@@ -6,15 +6,14 @@ import { CartService } from '../../../services/cart-services/cart.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-signup',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule
-  ],
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+    selector: 'app-signup',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule
+    ],
+    templateUrl: './signup.component.html',
+    styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
   formSignup: FormGroup;

@@ -9,11 +9,10 @@ import { OrderDetailsComponent } from '../order-details/order-details.component'
 import { UserSideMenuComponent } from '../user-side-menu/user-side-menu.component';
 
 @Component({
-  selector: 'app-orders',
-  standalone: true,
-  imports: [CommonModule, RouterModule, OrderDetailsComponent, UserSideMenuComponent],
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+    selector: 'app-orders',
+    imports: [CommonModule, RouterModule, OrderDetailsComponent, UserSideMenuComponent],
+    templateUrl: './orders.component.html',
+    styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
   orders: Order[] = [];

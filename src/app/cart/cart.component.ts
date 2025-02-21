@@ -2,14 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CartService } from '../../services/cart-services/cart.service';
 import { Router, RouterModule } from '@angular/router';
-import { ToastService } from '../../services/toast-services/toast.service';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+interface CheckoutResponse {
+  orderId: string;
+  message: string;
+}
 
 @Component({
-  selector: 'app-cart',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+    selector: 'app-cart',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './cart.component.html',
+    styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
@@ -45,8 +49,22 @@ export class CartComponent implements OnInit {
 
   constructor(
     public cartService: CartService,
-    private toastService: ToastService
-  ) {}
+    private router: Router
+  ) {
+    Notify.init({
+      position: 'right-bottom',
+      timeout: 3000,
+      cssAnimation: true,
+      cssAnimationDuration: 400,
+      cssAnimationStyle: 'fade',
+      success: {
+        background: '#28a745',
+      },
+      failure: {
+        background: '#dc3545',
+      }
+    });
+  }
 
   ngOnInit() {
     this.loadCartItems();
@@ -89,7 +107,7 @@ export class CartComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error loading cart:', error);
-        this.toastService.showError('Failed to load cart items');
+        Notify.failure('Failed to load cart items');
         this.isLoading = false;
       }
     });
@@ -100,7 +118,7 @@ export class CartComponent implements OnInit {
     
     if (!cartItemId) {
       console.error('Invalid cart item ID');
-      this.toastService.showError('Cannot remove item: Invalid cart item ID');
+      Notify.failure('Cannot remove item: Invalid cart item ID');
       return;
     }
 
@@ -111,12 +129,12 @@ export class CartComponent implements OnInit {
     this.cartService.removeFromCart(cartItemId).subscribe({
       next: (response) => {
         console.log('Remove item response:', response);
-        this.toastService.showSuccess('Item removed from cart');
+        Notify.success('Item removed from cart');
         this.loadCartItems(); // Refresh the cart
       },
       error: (error) => {
         console.error('Error removing item:', error);
-        this.toastService.showError(error.message || 'Failed to remove item from cart');
+        Notify.failure('Failed to remove item from cart');
       }
     });
   }
@@ -138,11 +156,11 @@ export class CartComponent implements OnInit {
       next: (response) => {
         console.log('Update quantity response:', response);
         this.loadCartItems();
-        this.toastService.showSuccess('Quantity updated');
+        Notify.success('Quantity updated successfully');
       },
       error: (error) => {
         console.error('Error updating quantity:', error);
-        this.toastService.showError('Failed to update quantity');
+        Notify.failure('Failed to update quantity');
       }
     });
   }
@@ -192,9 +210,22 @@ export class CartComponent implements OnInit {
 
   proceedToCheckout() {
     if (this.cartItems.length === 0) {
-      this.toastService.showError('Your cart is empty');
+      Notify.failure('Your cart is empty');
       return;
     }
     this.closeCart();
+  }
+
+  checkout() {
+    this.cartService.checkout().subscribe({
+      next: (response: CheckoutResponse) => {
+        Notify.success('Order placed successfully');
+        this.router.navigate(['/orders']);
+      },
+      error: (error: Error) => {
+        console.error('Checkout error:', error);
+        Notify.failure('Checkout failed');
+      }
+    });
   }
 } 

@@ -161,7 +161,8 @@ export class ProductService {
   }
 
   getProductsByBrand(brandId: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/by-brand?brand_id=${brandId}`).pipe(
+    // return this.http.get<Product[]>(`${this.apiUrl}/by-brand?brand_id=${brandId}`).pipe(
+    return this.http.get<Product[]>(`${this.apiUrl}/brand/${brandId}`).pipe(
       map(response => response),
       catchError(error => {
         console.error('Error fetching products by brand:', error);

@@ -4,11 +4,10 @@ import { CommonModule } from '@angular/common';
 import { HeaderService } from '../../../services/header-services/header.service';
 
 @Component({
-  selector: 'app-category-menu',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+    selector: 'app-category-menu',
+    imports: [CommonModule],
+    templateUrl: './category.component.html',
+    styleUrls: ['./category.component.css']
 })
 export class CategoryMenuComponent implements OnInit, OnChanges {
   @Input() categoryId: string = '';

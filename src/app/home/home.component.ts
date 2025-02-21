@@ -12,21 +12,20 @@ import { ImageGridComponent } from './global-brands-to-love/global-brands-to-lov
 import { InfluencerStoresComponent } from './influencer-stores/influencer-stores.component';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [
-    CommonModule,
-    BannerAndOffersCarouselComponent,
-    GiftStoreComponent,
-    FlashSalesComponent,
-    CelebrateLoveCarouselCardsComponent,
-    OfferCardsComponent,
-    SangTheseBeautyStealsComponent,
-    BeautyToFallForComponent,
-    CupidApprovedOffersComponent,
-    ImageGridComponent,
-    InfluencerStoresComponent
-  ],
-  templateUrl: './home.component.html',
+    selector: 'app-home',
+    imports: [
+        CommonModule,
+        BannerAndOffersCarouselComponent,
+        GiftStoreComponent,
+        FlashSalesComponent,
+        CelebrateLoveCarouselCardsComponent,
+        OfferCardsComponent,
+        SangTheseBeautyStealsComponent,
+        BeautyToFallForComponent,
+        CupidApprovedOffersComponent,
+        ImageGridComponent,
+        InfluencerStoresComponent
+    ],
+    templateUrl: './home.component.html'
 })
 export class HomeComponent { } 

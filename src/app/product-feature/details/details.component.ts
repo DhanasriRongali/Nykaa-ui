@@ -4,11 +4,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Brand, Category } from '../../../types/product.types';
 
 @Component({
-  selector: 'app-details',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.css']
+    selector: 'app-details',
+    imports: [CommonModule],
+    templateUrl: './details.component.html',
+    styleUrls: ['./details.component.css']
 })
 export class DetailsComponent {
   @Input() description?: string | '';

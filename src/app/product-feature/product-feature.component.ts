@@ -8,16 +8,15 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
-  imports: [
-    CommonModule,
-    OverviewComponent,
-    DetailsComponent,
-    FeedbackComponent
-  ],
-  selector: 'app-product-feature',
-  templateUrl: './product-feature.component.html',
-  styleUrls: ['./product-feature.component.css'],
+    imports: [
+        CommonModule,
+        OverviewComponent,
+        DetailsComponent,
+        FeedbackComponent
+    ],
+    selector: 'app-product-feature',
+    templateUrl: './product-feature.component.html',
+    styleUrls: ['./product-feature.component.css']
 })
 export class ProductFeatureComponent implements OnInit {
   product: Product | null = null;

@@ -5,11 +5,10 @@ import { Product } from '../../../types/product.types';
 import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
-  selector: 'app-product-grid',
-  standalone: true,
-  imports: [CommonModule, ProductCardComponent],
-  templateUrl: './product-grid.component.html',
-  styleUrls: ['./product-grid.component.css'],
+    selector: 'app-product-grid',
+    imports: [CommonModule, ProductCardComponent],
+    templateUrl: './product-grid.component.html',
+    styleUrls: ['./product-grid.component.css']
 })
 export class ProductGridComponent implements OnInit {
   @Input() products: Product[] = [];

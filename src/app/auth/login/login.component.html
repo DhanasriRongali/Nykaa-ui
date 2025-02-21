@@ -16,9 +16,6 @@
             {{ hidePassword ? '👁️' : '👁️‍🗨️' }}
           </button>
         </div>
-        <div class="error-message" *ngIf="errorMessage">
-          {{ errorMessage }}
-        </div>
         <button type="submit" [disabled]="!formLogin.valid || isLoading">
           {{ isLoading ? 'Logging in...' : 'Login' }}
         </button>

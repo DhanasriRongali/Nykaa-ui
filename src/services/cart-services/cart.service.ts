@@ -9,6 +9,11 @@ interface CartItem {
   quantity: number;
 }
 
+interface CheckoutResponse {
+  orderId: string;
+  message: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -130,5 +135,11 @@ export class CartService {
   loadCartCount() {
     const count = localStorage.getItem('cartCount');
     this.cartItemCount.next(count ? parseInt(count) : 0);
+  }
+
+  checkout(): Observable<CheckoutResponse> {
+    return this.http.post<CheckoutResponse>(`${environment.apiUrl}/orders`, {}, {
+      headers: this.getHeaders()
+    });
   }
 } 

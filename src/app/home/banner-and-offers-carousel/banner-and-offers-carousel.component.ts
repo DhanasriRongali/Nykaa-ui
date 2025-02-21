@@ -5,11 +5,10 @@ import { BannerOffersService, Url } from '../../../services/home-services/banner
 declare var bootstrap: any;
 
 @Component({
-  selector: 'app-banner-and-offers-carousel',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './banner-and-offers-carousel.component.html',
-  styleUrls: ['./banner-and-offers-carousel.component.css']
+    selector: 'app-banner-and-offers-carousel',
+    imports: [CommonModule],
+    templateUrl: './banner-and-offers-carousel.component.html',
+    styleUrls: ['./banner-and-offers-carousel.component.css']
 })
 export class BannerAndOffersCarouselComponent implements OnInit, AfterViewInit {
   @ViewChild('offersCarousel') carouselElement!: ElementRef;

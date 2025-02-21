@@ -4,17 +4,17 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../services/auth-services/auth.service';
 import { CartService } from '../../../services/cart-services/cart.service';
 import { CommonModule } from '@angular/common';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule
-  ],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        RouterModule
+    ],
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   formLogin: FormGroup;
@@ -31,6 +31,20 @@ export class LoginComponent implements OnInit {
     this.formLogin = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+
+    Notify.init({
+      position: 'right-bottom',
+      timeout: 3000,
+      cssAnimation: true,
+      cssAnimationDuration: 400,
+      cssAnimationStyle: 'fade',
+      success: {
+        background: '#28a745',
+      },
+      failure: {
+        background: '#dc3545',
+      }
     });
   }
 
@@ -63,10 +77,12 @@ export class LoginComponent implements OnInit {
           this.isLoading = false;
           this.closeLogin();
           window.location.reload();
+          Notify.success('Logged in successfully');
         },
         error: (error) => {
           this.isLoading = false;
           this.errorMessage = error.message;
+          Notify.failure('Login failed. Please check your credentials.');
         }
       });
     }

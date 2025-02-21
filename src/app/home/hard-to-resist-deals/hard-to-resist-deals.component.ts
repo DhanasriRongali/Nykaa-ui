@@ -5,12 +5,11 @@ import { ProductService } from '../../../services/product-services/products.serv
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-offer-cards',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './hard-to-resist-deals.component.html',
-  styleUrls: ['./hard-to-resist-deals.component.css'],
-  providers: [HardToResistDealsService]
+    selector: 'app-offer-cards',
+    imports: [CommonModule],
+    templateUrl: './hard-to-resist-deals.component.html',
+    styleUrls: ['./hard-to-resist-deals.component.css'],
+    providers: [HardToResistDealsService]
 })
 export class OfferCardsComponent implements OnInit {
   cards: { 

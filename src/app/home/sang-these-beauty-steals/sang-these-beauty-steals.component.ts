@@ -4,11 +4,10 @@ import { CommonModule } from '@angular/common';
 import { BeautyStealImage } from '../../../types/beauty-steal.types';
 
 @Component({
-  selector: 'app-sang-these-beauty-steals',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './sang-these-beauty-steals.component.html',
-  styleUrls: ['./sang-these-beauty-steals.component.css']
+    selector: 'app-sang-these-beauty-steals',
+    imports: [CommonModule],
+    templateUrl: './sang-these-beauty-steals.component.html',
+    styleUrls: ['./sang-these-beauty-steals.component.css']
 })
 export class SangTheseBeautyStealsComponent implements OnInit {
   titleImage: BeautyStealImage | undefined;

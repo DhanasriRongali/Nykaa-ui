@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-filter-box',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './filter-box.component.html',
-  styleUrls: ['./filter-box.component.css']
+    selector: 'app-filter-box',
+    imports: [CommonModule],
+    templateUrl: './filter-box.component.html',
+    styleUrls: ['./filter-box.component.css']
 })
 export class FilterBoxComponent {
   filters = [

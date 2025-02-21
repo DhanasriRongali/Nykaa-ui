@@ -8,12 +8,11 @@ import { CartService } from '../../../services/cart-services/cart.service';
 import { ToastService } from '../../../services/toast-services/toast.service';
 
 @Component({
-  selector: 'app-overview',
-  standalone: true,
-  imports: [CommonModule],
-  providers: [AuthService, CartService, ToastService],
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css']
+    selector: 'app-overview',
+    imports: [CommonModule],
+    providers: [AuthService, CartService, ToastService],
+    templateUrl: './overview.component.html',
+    styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent implements OnInit {
   constructor(

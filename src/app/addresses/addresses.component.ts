@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth-services/auth.service';
 import { AddressService } from '../../services/address-services/address.service';
 import { UserSideMenuComponent } from '../user-side-menu/user-side-menu.component';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 interface AddressModel {
   id: string;
@@ -17,11 +18,10 @@ interface AddressModel {
 }
 
 @Component({
-  selector: 'app-addresses',
-  standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, UserSideMenuComponent],
-  templateUrl: './addresses.component.html',
-  styleUrls: ['./addresses.component.css']
+    selector: 'app-addresses',
+    imports: [CommonModule, RouterModule, FormsModule, UserSideMenuComponent],
+    templateUrl: './addresses.component.html',
+    styleUrls: ['./addresses.component.css']
 })
 export class AddressesComponent implements OnInit {
   addresses: AddressModel[] = [];
@@ -34,7 +34,21 @@ export class AddressesComponent implements OnInit {
   constructor(
     private addressService: AddressService,
     public authService: AuthService
-  ) {}
+  ) {
+    Notify.init({
+      position: 'right-bottom',
+      timeout: 3000,
+      cssAnimation: true,
+      cssAnimationDuration: 400,
+      cssAnimationStyle: 'fade',
+      success: {
+        background: '#28a745',
+      },
+      failure: {
+        background: '#dc3545',
+      }
+    });
+  }
 
   ngOnInit() {
     this.loadAddresses();
@@ -58,9 +72,11 @@ export class AddressesComponent implements OnInit {
       next: (addresses: AddressModel[]) => {
         this.addresses = addresses;
         this.isLoading = false;
+        // Notify.success('Addresses loaded successfully');
       },
       error: (error: unknown) => {
         console.error('Error loading addresses:', error);
+        Notify.failure('Failed to load addresses');
         this.isLoading = false;
       }
     });
@@ -81,7 +97,6 @@ export class AddressesComponent implements OnInit {
   saveAddress(addressId: string) {
     if (!this.editedAddress) return;
 
-    // Create update object with only the fields we want to update
     const updateData = {
       type: this.editedAddress.type,
       street: this.editedAddress.street,
@@ -94,7 +109,6 @@ export class AddressesComponent implements OnInit {
       next: (updatedAddress) => {
         const index = this.addresses.findIndex(addr => addr.id === addressId);
         if (index !== -1) {
-          // Preserve is_default status when updating
           this.addresses[index] = {
             ...updatedAddress,
             is_default: this.addresses[index].is_default
@@ -102,9 +116,11 @@ export class AddressesComponent implements OnInit {
         }
         this.editMode[addressId] = false;
         this.editedAddress = null;
+        Notify.success('Address updated successfully');
       },
       error: (error: unknown) => {
         console.error('Error updating address:', error);
+        Notify.failure('Failed to update address');
       }
     });
   }
@@ -114,9 +130,11 @@ export class AddressesComponent implements OnInit {
       this.addressService.deleteAddress(addressId).subscribe({
         next: () => {
           this.addresses = this.addresses.filter(addr => addr.id !== addressId);
+          Notify.success('Address deleted successfully');
         },
         error: (error: unknown) => {
           console.error('Error deleting address:', error);
+          Notify.failure('Failed to delete address');
         }
       });
     }
@@ -135,9 +153,11 @@ export class AddressesComponent implements OnInit {
         this.addresses.push(addedAddress);
         this.showAddForm = false;
         this.newAddress = this.getEmptyAddress();
+        Notify.success('Address added successfully');
       },
       error: (error: unknown) => {
         console.error('Error adding address:', error);
+        Notify.failure('Failed to add address');
       }
     });
   }
@@ -149,9 +169,11 @@ export class AddressesComponent implements OnInit {
           ...addr,
           is_default: addr.id === addressId
         }));
+        Notify.success('Default address updated');
       },
       error: (error: unknown) => {
         console.error('Error setting default address:', error);
+        Notify.failure('Failed to set default address');
       }
     });
   }

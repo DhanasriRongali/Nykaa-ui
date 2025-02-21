@@ -9,10 +9,9 @@ import { Product } from '../../../types/product.types';
 
 @Component({
     selector: 'app-product-page',
-    standalone: true,
     imports: [
-        CommonModule, 
-        FilterBoxComponent, 
+        CommonModule,
+        FilterBoxComponent,
         ProductGridComponent,
         HttpClientModule
     ],

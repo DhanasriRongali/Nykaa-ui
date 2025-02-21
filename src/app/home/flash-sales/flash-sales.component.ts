@@ -4,11 +4,10 @@ import { FlashSaleImage } from '../../../types/flash-sale.types';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-flash-sales',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './flash-sales.component.html',
-  styleUrls: ['./flash-sales.component.css']
+    selector: 'app-flash-sales',
+    imports: [CommonModule],
+    templateUrl: './flash-sales.component.html',
+    styleUrls: ['./flash-sales.component.css']
 })
 export class FlashSalesComponent implements OnInit {
   banner: FlashSaleImage | undefined;

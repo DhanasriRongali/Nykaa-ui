@@ -4,11 +4,10 @@ import { Influencer } from '../../../types/influencer.types';
 import { InfluencerService } from '../../../services/home-services/influencer.service';
 
 @Component({
-  selector: 'app-influencer-stores',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './influencer-stores.component.html',
-  styleUrls: ['./influencer-stores.component.css']
+    selector: 'app-influencer-stores',
+    imports: [CommonModule],
+    templateUrl: './influencer-stores.component.html',
+    styleUrls: ['./influencer-stores.component.css']
 })
 export class InfluencerStoresComponent implements OnInit {
   influencers: Influencer[] = [];

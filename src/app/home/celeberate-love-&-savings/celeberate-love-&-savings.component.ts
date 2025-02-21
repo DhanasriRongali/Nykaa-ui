@@ -3,12 +3,11 @@ import { CommonModule } from '@angular/common';
 import { CelebrateLoveSavingsService } from '../../../services/home-services/celeberate-love-&-savings.service';
 
 @Component({
-  selector: 'app-celebrate-love-carousel-cards',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './celeberate-love-&-savings.component.html',
-  styleUrls: ['./celeberate-love-&-savings.component.css'],
-  providers: [CelebrateLoveSavingsService]
+    selector: 'app-celebrate-love-carousel-cards',
+    imports: [CommonModule],
+    templateUrl: './celeberate-love-&-savings.component.html',
+    styleUrls: ['./celeberate-love-&-savings.component.css'],
+    providers: [CelebrateLoveSavingsService]
 })
 export class CelebrateLoveCarouselCardsComponent implements AfterViewInit, OnDestroy {
   @ViewChild('carouselWrapper') carouselWrapper!: ElementRef;

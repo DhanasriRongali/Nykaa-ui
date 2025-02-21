@@ -3,11 +3,10 @@ import { CupidApprovedOffersService } from '../../../services/home-services/cupi
 import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule],
-  selector: 'app-cupid-approved-offers',
-  templateUrl: './cupid-approved-offers.component.html',
-  styleUrls: ['./cupid-approved-offers.component.css']
+    imports: [CommonModule],
+    selector: 'app-cupid-approved-offers',
+    templateUrl: './cupid-approved-offers.component.html',
+    styleUrls: ['./cupid-approved-offers.component.css']
 })
 export class CupidApprovedOffersComponent implements OnInit {
   offers: any[] = [];

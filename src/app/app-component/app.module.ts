@@ -10,6 +10,12 @@ import { ProductFeatureModule } from '../product-feature/product-feature.module'
 import { ProductPageComponent } from '../product/product-page/product-page.component';
 import { ProductCardComponent } from '../product/product-card/product-card.component';
 import { OrderDetailsComponent } from '../order-details/order-details.component';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 @NgModule({
   declarations: [
@@ -21,6 +27,14 @@ import { OrderDetailsComponent } from '../order-details/order-details.component'
     OrderDetailsComponent
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      timeOut: 3000,
+      closeButton: true,
+      progressBar: true
+    }),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

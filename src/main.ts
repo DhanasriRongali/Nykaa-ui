@@ -13,17 +13,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    RouterModule,
-    HeaderComponent,
-    FooterComponent,
-    HomeComponent,
-    HttpClientModule
-  ],
-  template: `
+    selector: 'app-root',
+    imports: [
+        RouterOutlet,
+        RouterModule,
+        HeaderComponent,
+        FooterComponent,
+        HomeComponent,
+        HttpClientModule
+    ],
+    template: `
     <app-header></app-header>
     <router-outlet></router-outlet>
     <app-footer></app-footer>

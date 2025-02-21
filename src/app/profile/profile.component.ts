@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth-services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserSideMenuComponent } from '../user-side-menu/user-side-menu.component';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 interface UserProfile {
   name: string;
@@ -30,11 +31,10 @@ interface UpdateData {
 }
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, UserSideMenuComponent],
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+    selector: 'app-profile',
+    imports: [CommonModule, FormsModule, RouterModule, UserSideMenuComponent],
+    templateUrl: './profile.component.html',
+    styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
   userProfile: UserProfile | null = null;
@@ -50,7 +50,21 @@ export class ProfileComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    Notify.init({
+      position: 'right-bottom',
+      timeout: 3000,
+      cssAnimation: true,
+      cssAnimationDuration: 400,
+      cssAnimationStyle: 'fade',
+      success: {
+        background: '#28a745',
+      },
+      failure: {
+        background: '#dc3545',
+      }
+    });
+  }
 
   ngOnInit() {
     this.loadUserProfile();
@@ -92,9 +106,11 @@ export class ProfileComponent implements OnInit {
       next: (response) => {
         this.userProfile = { ...this.userProfile, ...updateData } as UserProfile;
         this.editMode[section] = false;
+        Notify.success('Profile updated successfully');
       },
       error: (error) => {
         console.error('Error updating profile:', error);
+        Notify.failure('Failed to update profile');
       }
     });
   }
@@ -102,10 +118,12 @@ export class ProfileComponent implements OnInit {
   logout() {
     this.authService.logout().subscribe({
       next: () => {
+        Notify.success('Logged out successfully');
         this.router.navigate(['/']);
       },
       error: (error) => {
         console.error('Logout error:', error);
+        Notify.failure('Error during logout');
         this.authService.logoutLocally();
         this.router.navigate(['/']);
       }

@@ -3,11 +3,10 @@ import { BeautyToFallForService } from '../../../services/home-services/beauty-t
 import { CommonModule } from '@angular/common';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule],
-  selector: 'app-beauty-to-fall-for',
-  templateUrl: './beauty-to-fall-for.component.html',
-  styleUrls: ['./beauty-to-fall-for.component.css']
+    imports: [CommonModule],
+    selector: 'app-beauty-to-fall-for',
+    templateUrl: './beauty-to-fall-for.component.html',
+    styleUrls: ['./beauty-to-fall-for.component.css']
 })
 export class BeautyToFallForComponent implements OnInit {
   beautyToFallFor: any;

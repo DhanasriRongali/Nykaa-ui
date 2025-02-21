@@ -1,0 +1,27 @@
+/* Import Notyf styles */
+@import '../node_modules/notyf/notyf.min.css'; 
+
+/* Snackbar styles */
+.success-snackbar {
+  background: #e40046;
+  color: white;
+}
+
+.error-snackbar {
+  background: #ff3333;
+  color: white;
+}
+
+.mat-mdc-snack-bar-container {
+  &.success-snackbar {
+    --mdc-snackbar-container-color: #e40046;
+    --mat-mdc-snack-bar-button-color: white;
+    --mdc-snackbar-supporting-text-color: white;
+  }
+
+  &.error-snackbar {
+    --mdc-snackbar-container-color: #ff3333;
+    --mat-mdc-snack-bar-button-color: white;
+    --mdc-snackbar-supporting-text-color: white;
+  }
+} 

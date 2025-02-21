@@ -5,11 +5,10 @@ import { OrderService } from '../../services/order-services/order.service';
 import { Order } from '../../types/order.types'; // Import the Order interface
 
 @Component({
-  selector: 'app-order-details',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './order-details.component.html',
-  styleUrls: ['./order-details.component.css']
+    selector: 'app-order-details',
+    imports: [CommonModule],
+    templateUrl: './order-details.component.html',
+    styleUrls: ['./order-details.component.css']
 })
 export class OrderDetailsComponent implements OnInit {
   @Input() order!: Order; // Define the order input property

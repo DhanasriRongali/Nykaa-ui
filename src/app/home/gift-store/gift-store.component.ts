@@ -3,11 +3,10 @@ import { ImageService } from '../../../services/home-services/giftstore.service'
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-gift-store',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './gift-store.component.html',
-  styleUrls: ['./gift-store.component.css']
+    selector: 'app-gift-store',
+    imports: [CommonModule],
+    templateUrl: './gift-store.component.html',
+    styleUrls: ['./gift-store.component.css']
 })
 export class GiftStoreComponent {
   images: string[] = [];

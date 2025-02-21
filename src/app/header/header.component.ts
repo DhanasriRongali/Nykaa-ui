@@ -11,21 +11,21 @@ import { LoginComponent } from '../auth/login/login.component';
 import { SignupComponent } from '../auth/signup/signup.component';
 import { CartComponent } from '../cart/cart.component';
 import { AuthService } from '../../services/auth-services/auth.service';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    CategoryMenuComponent,
-    HttpClientModule,
-    LoginComponent,
-    SignupComponent,
-    CartComponent
-  ],
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+    selector: 'app-header',
+    imports: [
+        CommonModule,
+        RouterModule,
+        CategoryMenuComponent,
+        HttpClientModule,
+        LoginComponent,
+        SignupComponent,
+        CartComponent
+    ],
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
   mainNavItems: NavItems[] = [];
@@ -46,7 +46,21 @@ export class HeaderComponent implements OnInit {
     public cartService: CartService,
     public authService: AuthService,
     private router: Router
-  ) { }
+  ) {
+    Notify.init({
+      position: 'right-bottom',
+      timeout: 3000,
+      cssAnimation: true,
+      cssAnimationDuration: 400,
+      cssAnimationStyle: 'fade',
+      success: {
+        background: '#28a745',
+      },
+      failure: {
+        background: '#dc3545',
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.mainNavItems = this.headerService.getMainNavItems();
@@ -84,7 +98,8 @@ export class HeaderComponent implements OnInit {
 
   toggleLogin() {
     if (this.authService.isLoggedIn()) {
-      this.authService.logout();
+      this.authService.logoutLocally();
+      Notify.success('Logged out successfully');
       window.location.reload();
     } else {
       this.cartService.toggleLoginModal();
@@ -100,17 +115,10 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout().subscribe({
-      next: () => {
-        this.showAccountMenu = false;
-        this.router.navigate(['/']);
-      },
-      error: (error) => {
-        console.error('Logout error:', error);
-        this.authService.logoutLocally();
-        this.router.navigate(['/']);
-      }
-    });
+    this.showAccountMenu = false;
+    this.authService.logoutLocally();
+    Notify.success('Logged out successfully');
+    this.router.navigate(['/']);
   }
 
   closeAccountMenu() {

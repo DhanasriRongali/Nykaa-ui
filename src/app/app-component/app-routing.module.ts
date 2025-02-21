@@ -15,8 +15,9 @@ import { OrderDetailsComponent } from '../order-details/order-details.component'
 import { AddressesComponent } from '../addresses/addresses.component';
 
 @Component({
-  selector: 'app-test',
-  template: '<h1>Test</h1>'
+    selector: 'app-test',
+    template: '<h1>Test</h1>',
+    standalone: false
 })
 export class TestComponent {}
 

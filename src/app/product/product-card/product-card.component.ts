@@ -3,15 +3,14 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../../../services/cart-services/cart.service';
 import { AuthService } from '../../../services/auth-services/auth.service';
-import { ToastService } from '../../../services/toast-services/toast.service';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Product } from '../../../types/product.types';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule],
-  selector: 'app-product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+    imports: [CommonModule],
+    selector: 'app-product-card',
+    templateUrl: './product-card.component.html',
+    styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent {
   @Input() product!: Product;
@@ -21,9 +20,22 @@ export class ProductCardComponent {
   constructor(
     private cartService: CartService,
     private authService: AuthService,
-    private toastService: ToastService,
     private router: Router
-  ) {}
+  ) {
+    Notify.init({
+      position: 'right-bottom',
+      timeout: 3000,
+      cssAnimation: true,
+      cssAnimationDuration: 400,
+      cssAnimationStyle: 'fade',
+      success: {
+        background: '#28a745',
+      },
+      failure: {
+        background: '#dc3545',
+      }
+    });
+  }
 
   ngOnInit() {
     this.hoverImage = this.product.images[0]; // Default image
@@ -33,7 +45,7 @@ export class ProductCardComponent {
     event.stopPropagation();
     console.log('Add to Cart clicked');
     if (!this.authService.isLoggedIn()) {
-      this.toastService.showError('Please login to add items to cart');
+      Notify.failure('Please login to add items to cart');
       return;
     }
 
@@ -47,12 +59,12 @@ export class ProductCardComponent {
     this.cartService.addToCart(cartItem).subscribe({
       next: (response) => {
         console.log('Add to Cart Response:', response);
-        this.toastService.showSuccess('Product added to cart successfully');
+        Notify.success('Product added to cart successfully');
         this.cartService.updateCartCount();
       },
       error: (error) => {
         console.error('Add to Cart Error:', error);
-        this.toastService.showError(error.message || 'Failed to add product to cart');
+        Notify.failure(error.message || 'Failed to add product to cart');
       }
     });
   }
